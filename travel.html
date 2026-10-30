@@ -12,6 +12,8 @@ img{max-width:100%}
   h1{font-size:44px !important}
   h2{font-size:28px !important}
 }
+.paper-banner{position:absolute;inset:0 0 24px 0;border-style:solid;border-width:70px 60px;border-image:url('images/66d79fd1bbba2666c4d483e2ac97fa63.webp') 150 130 fill / 70px 60px stretch}
+@media (max-width: 640px){.paper-banner{border-width:40px 22px;border-image-width:40px 22px}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@400;500;700&amp;family=Caveat:wght@600&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
@@ -23,17 +25,17 @@ a{color:#1F2A44}a:hover{color:#B2472F}
 <body>
 <div id="dc-root"></div>
 <template id="dc-template">
-<div style="background: #EFE6D4; color: #1F2A44; font-family: 'Archivo', system-ui, sans-serif; font-size: 17px; line-height: 1.6">
+<div style="background: #D8822C; color: #1F2A44; font-family: 'Archivo', system-ui, sans-serif; font-size: 17px; line-height: 1.6">
 
   <header style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 20px">
     <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
       <a href="index.html" style="text-decoration: none; color: #13325B; display: flex; align-items: center; gap: 2px">
-        <img src="images/4de7f62603047356ec764e3a68a94146.png" alt="Just Stay Away" style="height: 88px; width: auto; display: block"><span style="font-family: 'Caveat', cursive; font-size: 24px; color: #1B5FA6">est. on the road</span>
+        <img src="images/4de7f62603047356ec764e3a68a94146.png" alt="Just Stay Away" style="height: 88px; width: auto; display: block"><span style="font-family: 'Caveat', cursive; font-size: 24px; color: #13325B">est. on the road</span>
       </a>
       <div style="display: flex; flex-wrap: wrap; gap: 4px 22px; font-weight: 700; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase">
         <a href="index.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Home</a>
         <a href="videos.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Videos</a>
-        <a href="travel.html" style="color: #1B5FA6; text-decoration: none; padding: 10px 0; border-bottom: 3px solid #F4C542">Travel blogs</a>
+        <a href="travel.html" style="color: #13325B; text-decoration: none; padding: 10px 0; border-bottom: 3px solid #F4C542">Travel blogs</a>
         <a href="where-we-stay.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Where we stay</a>
         <a href="food.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Food</a>
         <a href="about.html" style="color: #13325B; text-decoration: none; padding: 10px 0">About us</a>
@@ -42,8 +44,8 @@ a{color:#1F2A44}a:hover{color:#B2472F}
   </header>
 
   <section style="position: relative; padding: 16px 0 40px; margin-bottom: 32px">
-    <div aria-hidden="true" style="position: absolute; inset: 0 0 16px 0; background: #2C6FB7; clip-path: polygon(0 8%, 10% 3%, 24% 7%, 40% 2%, 56% 6%, 72% 1%, 88% 5%, 100% 2%, 100% 94%, 86% 99%, 70% 95%, 54% 100%, 38% 95%, 22% 100%, 8% 96%, 0 100%)"></div>
-    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 64px 24px 56px; color: #FFFFFF">
+    <div aria-hidden="true" class="paper-banner" style="inset: 0 0 16px 0"></div>
+    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 64px 24px 56px; color: #13325B">
       <p style="margin: 0 0 6px; font-size: 15px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase">Where the flip flops have been</p>
       <h1 style="margin: 0 0 18px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 84px; line-height: 1; transform: rotate(-2deg); transform-origin: left">TRAVEL BLOGS</h1>
       <p style="margin: 0; font-size: 19px; max-width: 54ch">Every place we've visited, with the videos, blog posts and food in one spot. Start with the map or scroll down.</p>
@@ -73,7 +75,7 @@ a{color:#1F2A44}a:hover{color:#B2472F}
             <span aria-hidden="true" style="position: absolute; left: {{labelX}}%; top: {{labelY}}%; transform: translate(-50%, -150%); background: #1F2A44; color: #FFFFFF; font-weight: 700; font-size: 14px; padding: 4px 10px; border-radius: 4px; white-space: nowrap; pointer-events: none">{{labelText}}</span>
           </sc-if>
         </div>
-        <p style="margin: 14px 0 0; font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px"><span>Tap a pin to see the videos we filmed there.</span><span style="font-size: 12px; color: #4A5468">Map imagery: NASA Blue Marble</span></p>
+        <p style="margin: 14px 0 0; font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px"><span>Tap a pin to see the videos we filmed there.</span><span style="font-size: 12px; color: #13325B">Map imagery: NASA Blue Marble</span></p>
       </div>
 
       <div style="flex: 2 1 320px; min-width: 0; background: #FFFFFF; border: 2px solid #1F2A44; border-radius: 6px; padding: 28px; box-shadow: 6px 6px 0 #1F2A44">
@@ -109,7 +111,7 @@ a{color:#1F2A44}a:hover{color:#B2472F}
   </section>
 
   <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 64px">
-    <p style="margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: #B2472F">fresh off the road</p>
+    <p style="margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: #13325B">fresh off the road</p>
     <h2 style="margin: 0 0 24px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 44px; color: #13325B">LATEST BLOG POSTS</h2>
     <a href="blog-nafplio.html" style="display: flex; flex-wrap: wrap; background: #FFFFFF; border-radius: 6px; overflow: hidden; box-shadow: 0 6px 18px rgba(19,50,91,0.14); text-decoration: none; color: #13325B">
       <span style="flex: 1 1 360px; min-height: 260px; position: relative; display: block">
@@ -154,15 +156,15 @@ a{color:#1F2A44}a:hover{color:#B2472F}
     </div>
   </section>
 
-  <footer style="background: #13325B; color: #FFFFFF">
+  <footer style="background: #B3DAE7; color: #13325B">
     <div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: center">
       <div style="flex: 1 1 420px; min-width: 0">
-        <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 30px; color: #F4C542">wish you were here</p>
+        <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 30px; color: #B2472F">wish you were here</p>
         <h2 style="margin: 0; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 38px">JOIN THOUSANDS OF FELLOW TRAVELLERS</h2>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 12px">
         <a href="https://www.youtube.com/@Flip-Flop-Flicks?sub_confirmation=1" target="_blank" rel="noopener" style="background: #D62C2C; color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 14px 24px; border-radius: 4px">Subscribe on YouTube</a>
-        <a href="about.html" style="background: #FFFFFF; color: #13325B; text-decoration: none; font-weight: 700; padding: 14px 24px; border-radius: 4px">About us</a>
+        <a href="about.html" style="background: #13325B; color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 14px 24px; border-radius: 4px">About us</a>
       </div>
     </div>
   </footer>
