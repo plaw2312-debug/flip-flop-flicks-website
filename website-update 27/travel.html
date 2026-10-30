@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Just Stay Away – Travel blogs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+img{max-width:100%}
+@media (max-width: 640px){
+  h1{font-size:44px !important}
+  h2{font-size:28px !important}
+}
+.paper-banner{position:absolute;inset:0 0 24px 0;border-style:solid;border-width:70px 60px;border-image:url('images/66d79fd1bbba2666c4d483e2ac97fa63.webp') 150 130 fill / 70px 60px stretch}
+@media (max-width: 640px){.paper-banner{border-width:40px 22px;border-image-width:40px 22px}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@400;500;700&amp;family=Caveat:wght@600&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F2A44}a:hover{color:#B2472F}
+</style>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-template">
+<div style="background: #D8822C; color: #1F2A44; font-family: 'Archivo', system-ui, sans-serif; font-size: 17px; line-height: 1.6">
+
+  <header style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 20px">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="index.html" style="text-decoration: none; color: #13325B; display: flex; align-items: center; gap: 2px">
+        <img src="images/4de7f62603047356ec764e3a68a94146.png" alt="Just Stay Away" style="height: 88px; width: auto; display: block"><span style="font-family: 'Caveat', cursive; font-size: 24px; color: #13325B">est. on the road</span>
+      </a>
+      <div style="display: flex; flex-wrap: wrap; gap: 4px 22px; font-weight: 700; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase">
+        <a href="index.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Home</a>
+        <a href="videos.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Videos</a>
+        <a href="travel.html" style="color: #13325B; text-decoration: none; padding: 10px 0; border-bottom: 3px solid #F4C542">Travel blogs</a>
+        <a href="where-we-stay.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Where we stay</a>
+        <a href="food.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Food</a>
+        <a href="about.html" style="color: #13325B; text-decoration: none; padding: 10px 0">About us</a>
+      </div>
+    </nav>
+  </header>
+
+  <section style="position: relative; padding: 16px 0 40px; margin-bottom: 32px">
+    <div aria-hidden="true" class="paper-banner" style="inset: 0 0 16px 0"></div>
+    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 64px 24px 56px; color: #13325B">
+      <p style="margin: 0 0 6px; font-size: 15px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase">Where the flip flops have been</p>
+      <h1 style="margin: 0 0 18px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 84px; line-height: 1; transform: rotate(-2deg); transform-origin: left">TRAVEL BLOGS</h1>
+      <p style="margin: 0; font-size: 19px; max-width: 54ch">Every place we've visited, with the videos, blog posts and food in one spot. Start with the map or scroll down.</p>
+    </div>
+  </section>
+
+  <section id="map" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 64px; scroll-margin-top: 16px">
+
+    <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+      <div style="flex: 3 1 560px; min-width: 0">
+        <div style="position: relative; border: 2px solid #1F2A44; border-radius: 6px; overflow: hidden; background: #CFE0E3; box-shadow: 6px 6px 0 #1F2A44">
+          <img src="{{mapSrc}}" alt="{{mapAlt}}" style="width: 100%; height: auto; display: block">
+          <sc-for list="{{pins}}" as="p" hint-placeholder-count="6">
+            <button type="button" onClick="{{p.pick}}" aria-label="{{p.aria}}" style="position: absolute; left: {{p.x}}%; top: {{p.y}}%; transform: translate(-50%, -50%); width: 44px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center">
+              <sc-if value="{{p.home}}" hint-placeholder-val="{{false}}">
+                <span style="width: 34px; height: 34px; border-radius: 50%; background: #B2472F; border: 3px solid #FFFFFF; box-shadow: 0 2px 6px rgba(31,42,68,0.4); box-sizing: border-box; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg></span>
+              </sc-if>
+              <sc-if value="{{p.selected}}" hint-placeholder-val="{{false}}">
+                <span style="width: 26px; height: 26px; border-radius: 50%; background: #1F2A44; border: 4px solid #FFFFFF; box-shadow: 0 3px 8px rgba(31,42,68,0.45); box-sizing: border-box"></span>
+              </sc-if>
+              <sc-if value="{{p.unselected}}" hint-placeholder-val="{{true}}">
+                <span style="width: 20px; height: 20px; border-radius: 50%; background: #B2472F; border: 3px solid #FFFFFF; box-shadow: 0 2px 6px rgba(31,42,68,0.35); box-sizing: border-box"></span>
+              </sc-if>
+            </button>
+          </sc-for>
+          <sc-if value="{{hasLabel}}" hint-placeholder-val="{{false}}">
+            <span aria-hidden="true" style="position: absolute; left: {{labelX}}%; top: {{labelY}}%; transform: translate(-50%, -150%); background: #1F2A44; color: #FFFFFF; font-weight: 700; font-size: 14px; padding: 4px 10px; border-radius: 4px; white-space: nowrap; pointer-events: none">{{labelText}}</span>
+          </sc-if>
+        </div>
+        <p style="margin: 14px 0 0; font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px"><span>Tap a pin to see the videos we filmed there.</span><span style="font-size: 12px; color: #13325B">Map imagery: NASA Blue Marble</span></p>
+      </div>
+
+      <div style="flex: 2 1 320px; min-width: 0; background: #FFFFFF; border: 2px solid #1F2A44; border-radius: 6px; padding: 28px; box-shadow: 6px 6px 0 #1F2A44">
+        <sc-if value="{{noPlace}}" hint-placeholder-val="{{true}}">
+          <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 26px; color: #B2472F">the route</p>
+          <h2 style="margin: 0 0 16px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 26px; text-transform: uppercase; line-height: 1.1">4 weeks across Greece</h2>
+          <ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px">
+            <li><strong>Corfu to Parga</strong> · Syvota, Nafpaktos</li>
+            <li><strong>The Mani</strong> · Limeni, Kardamyli, Stoupa</li>
+            <li><strong>Islands &amp; Corinth</strong> · Hydra, Spetses, the canal</li>
+            <li><strong>Meteora</strong> · monasteries in the sky</li>
+            <li><strong>Back to Corfu</strong> · Kassiopi, Paleokastritsa</li>
+          </ol>
+          <p style="margin: 20px 0 0; font-family: 'Caveat', cursive; font-size: 24px; color: #B2472F">pick a pin on the map to start exploring</p>
+        </sc-if>
+        <sc-if value="{{hasPlace}}" hint-placeholder-val="{{false}}">
+          <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 26px; color: #B2472F">{{place.region}}</p>
+          <h2 style="margin: 0 0 8px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 28px; text-transform: uppercase; line-height: 1.1">{{place.name}}</h2>
+          <p style="margin: 0 0 18px">{{place.blurb}}</p>
+          <p style="margin: 0 0 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5468">{{place.countLabel}}</p>
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <sc-for list="{{place.videos}}" as="pv" hint-placeholder-count="2">
+              <a href="{{pv.url}}" target="_blank" rel="noopener" style="display: flex; gap: 14px; align-items: flex-start; color: #1F2A44; text-decoration: none">
+                <span style="flex: 0 0 128px; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: #A9C4C9; display: block"><img src="{{pv.thumb}}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></span>
+                <span style="font-weight: 700; font-size: 15px; line-height: 1.35">{{pv.title}}</span>
+              </a>
+            </sc-for>
+          </div>
+          <button type="button" onClick="{{clearPlace}}" style="margin-top: 22px; font: inherit; font-weight: 700; font-size: 15px; background: transparent; color: #1F2A44; border: 2px solid #1F2A44; border-radius: 4px; padding: 10px 18px; cursor: pointer; min-height: 44px">Back to the route</button>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 64px">
+    <p style="margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: #13325B">fresh off the road</p>
+    <h2 style="margin: 0 0 24px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 44px; color: #13325B">LATEST BLOG POSTS</h2>
+    <a href="blog-methoni.html" style="display: flex; flex-wrap: wrap; max-width: 900px; background: #FFFFFF; border-radius: 6px; overflow: hidden; box-shadow: 0 6px 18px rgba(19,50,91,0.14); margin-bottom: 24px; text-decoration: none; color: #13325B">
+      <span style="flex: 1 1 280px; max-width: 400px; min-height: 225px; position: relative; display: block">
+        <img src="images/a219654066ac483176e20a9083b60ccc.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%">
+      </span>
+      <span style="flex: 1 1 300px; min-width: 0; padding: 22px 28px; display: flex; flex-direction: column; justify-content: center; gap: 10px">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #B2472F">Methoni · Peloponnese · October 2026</span>
+        <span style="font-family: 'Permanent Marker', cursive; font-size: 24px; line-height: 1.15">METHONI, GREECE: A FAIRYTALE CASTLE, A BEAUTIFUL BEACH AND THE GREEK LIFE WE COULD GET USED TO</span>
+        <span style="font-size: 15px; line-height: 1.55; color: #2E3E57">A Venetian sea castle, a sandy beach, morning coffees at a 1904 bakery, a birthday chocolate cake and a “small plate” that could feed a village.</span>
+        <span style="align-self: flex-start; margin-top: 6px; background: #B2472F; color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 4px">Read the blog →</span>
+      </span>
+    </a>
+    <a href="blog-nafplio.html" style="display: flex; flex-wrap: wrap; max-width: 900px; background: #FFFFFF; border-radius: 6px; overflow: hidden; box-shadow: 0 6px 18px rgba(19,50,91,0.14); text-decoration: none; color: #13325B">
+      <span style="flex: 1 1 280px; max-width: 400px; min-height: 225px; position: relative; display: block">
+        <img src="images/109e8ed861e3d593ba079c103e6f1052.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 35% 50%">
+      </span>
+      <span style="flex: 1 1 300px; min-width: 0; padding: 22px 28px; display: flex; flex-direction: column; justify-content: center; gap: 10px">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #B2472F">Nafplio · Peloponnese · October 2026</span>
+        <span style="font-family: 'Permanent Marker', cursive; font-size: 24px; line-height: 1.15">NAFPLIO, GREECE: IS THIS BEAUTIFUL SEASIDE TOWN REALLY WORTH THE HYPE?</span>
+        <span style="font-size: 15px; line-height: 1.55; color: #2E3E57">Venetian streets, Bourtzi Castle, a closed promenade, an iced chocolate emergency, one of our favourite meals and the hotel we'd book again.</span>
+        <span style="align-self: flex-start; margin-top: 6px; background: #B2472F; color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 4px">Read the blog →</span>
+      </span>
+    </a>
+  </section>
+
+  <section style="background: #1F2A44; color: #EFE6D4">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px">
+      <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 28px; color: #F4C542">our favourite corner</p>
+      <h2 style="margin: 0 0 28px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 40px; text-transform: uppercase">Greece</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">
+        <a href="#map-nafplio" style="color: #EFE6D4; text-decoration: none; background: #2A3654; border-radius: 6px; overflow: hidden"><img src="images/109e8ed861e3d593ba079c103e6f1052.jpg" alt="Nafplio's harbour with yachts, old town houses and mountains across the bay" style="width: 100%; height: 180px; object-fit: cover; object-position: 50% 50%; display: block"><div style="padding: 18px"><h3 style="margin: 0 0 4px; font-size: 22px">The Peloponnese</h3><p style="margin: 0; font-size: 15px; color: #CFC6B4">Nafplio · Ermioni · Methoni · Pylos · Kalamata</p></div></a>
+        <a href="#map-mani" style="color: #EFE6D4; text-decoration: none; background: #2A3654; border-radius: 6px; overflow: hidden"><img src="images/45dd84a4167393d87d8456c7902e0435.jpg" alt="A stone tower house above the clear water at Limeni in the Mani" style="width: 100%; height: 180px; object-fit: cover; object-position: 60% 50%; display: block"><div style="padding: 18px"><h3 style="margin: 0 0 4px; font-size: 22px">The Mani Peninsula</h3><p style="margin: 0; font-size: 15px; color: #CFC6B4">Limeni · Kardamyli · Stoupa · Foneas</p></div></a>
+        <a href="#map-pylos" style="color: #EFE6D4; text-decoration: none; background: #2A3654; border-radius: 6px; overflow: hidden"><img src="images/a1a8f5b320342875745a0d5d283a2551.jpg" alt="The stone bridge and sea castle at Methoni" style="width: 100%; height: 180px; object-fit: cover; object-position: 55% 45%; display: block"><div style="padding: 18px"><h3 style="margin: 0 0 4px; font-size: 22px">Methoni</h3><p style="margin: 0; font-size: 15px; color: #CFC6B4">A Venetian sea castle</p></div></a>
+        <a href="#map-kassiopi" style="color: #EFE6D4; text-decoration: none; background: #2A3654; border-radius: 6px; overflow: hidden"><img src="images/8ca98ec558b263442cd747b3c1c22c4e.jpg" alt="Kassiopi harbour on Corfu, seen from above" style="width: 100%; height: 180px; object-fit: cover; object-position: 50% 70%; display: block"><div style="padding: 18px"><h3 style="margin: 0 0 4px; font-size: 22px">Corfu &amp; Parga</h3><p style="margin: 0; font-size: 15px; color: #CFC6B4">Kassiopi · Kalami Bay · Syvota</p></div></a>
+        <a href="#map-hydra" style="color: #EFE6D4; text-decoration: none; background: #2A3654; border-radius: 6px; overflow: hidden"><img src="images/fd78cc8a44f7641e8d4dc75851598077.jpg" alt="A boat heading into Hydra harbour, with the town rising up the hillside" style="width: 100%; height: 180px; object-fit: cover; object-position: 50% 45%; display: block"><div style="padding: 18px"><h3 style="margin: 0 0 4px; font-size: 22px">Hydra &amp; Spetses</h3><p style="margin: 0; font-size: 15px; color: #CFC6B4">Day trips from Porto Cheli</p></div></a>
+        <a href="#map-pylos" style="color: #EFE6D4; text-decoration: none; background: #2A3654; border-radius: 6px; overflow: hidden"><img src="images/ec14207af39f4dd33e2dfac18b9ad56e.jpg" alt="The horseshoe-shaped bay of Voidokilia beach, with turquoise water, sailing boats and sand dunes" style="width: 100%; height: 180px; object-fit: cover; object-position: 50% 55%; display: block"><div style="padding: 18px"><h3 style="margin: 0 0 4px; font-size: 22px">The beaches</h3><p style="margin: 0; font-size: 15px; color: #CFC6B4">Voidokilia · Romanos · Karathonas</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 72px">
+    <div style="background: #B2472F; color: #FFFFFF; border-radius: 6px; padding: 40px; display: flex; flex-wrap: wrap; gap: 32px">
+      <div style="flex: 1 1 280px; min-width: 0">
+        <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 28px; color: #F4C542">learned the hard way</p>
+        <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 32px; line-height: 1.1; text-transform: uppercase">Our road trip tips</h2>
+      </div>
+      <ul style="flex: 2 1 420px; min-width: 0; margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px">
+        <li>[Tip about hiring a car]</li>
+        <li>[Tip about when to go]</li>
+        <li>[Tip about where to base yourself]</li>
+        <li>[Tip about ferries and islands]</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer style="background: #B3DAE7; color: #13325B">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: center">
+      <div style="flex: 1 1 420px; min-width: 0">
+        <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 30px; color: #B2472F">wish you were here</p>
+        <h2 style="margin: 0; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 38px">JOIN THOUSANDS OF FELLOW TRAVELLERS</h2>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="https://www.youtube.com/@Flip-Flop-Flicks?sub_confirmation=1" target="_blank" rel="noopener" style="background: #D62C2C; color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 14px 24px; border-radius: 4px">Subscribe on YouTube</a>
+        <a href="about.html" style="background: #13325B; color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 14px 24px; border-radius: 4px">About us</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+var MAPS = {
+  greece: { src: 'images/7ba6381e5b2fd57ede1407e5866c33f0.jpg', alt: 'Satellite map of western and southern Greece with pins for every place we have filmed', label: 'Greece' }
+};
+var V = {
+  '6xUhlBgDLfI': ['A Perfect Peloponnese Base: Ermioni', 'e4ac2493f7564fd993116002f8d65c65'],
+  'H9q7_R6Jjcc': ['Nafplio: Is This Peloponnese Town Perfect?', 'b809b67b01c9646c5178a18da0efd627'],
+  'oCrvlDqLIDs': ["Skip the Resorts: You're Missing This Paradise", '606fa3408cabd79ef7565b6e97f55b1d'],
+  'TlHaUxYNXzw': ["Here's What You're Missing", '134270e19df44cd8a4ee966e9cf65c1d'],
+  'LpoDjHQvFiI': ['Everyone Flies Into Kalamata… But Almost No One Stays', '94fe89d651f41522f9d07f0491fd11e0'],
+  '0ut8WgsOeWw': ["Greece's Best Hidden Places… That Almost No One Visits", 'c1fd8f6071b1350a42ae3eb977df6397'],
+  'xfeMuD4AdEU': ['Greece Is Hiding Places Like THIS', 'eb3083c958d737f5b1c88f240c7eac20'],
+  '2uwpbV8sBeA': ["Everyone Heads for Corfu Town… They're Missing Kassiopi", '28f4ccd37c3e2cb10f1a4bd166420b7e'],
+  'Bcv9Uc0RR6A': ['Why Everyone Falls in Love with Kassiopi, Corfu', '8a22e4c5e0ba9a33f4f404059e61b35d'],
+  'VAXqO6V1Geo': ['Part 5 of 5: 2,000 km Across Greece to See This', 'b3be0eed4f413c900b666071efd61c6c'],
+  '1EvABYtNqt8': ['Part 4 of 5: Magical, Mystical Meteora', 'e76ccda55b23163e492726dd8a4f91b5'],
+  'MRjuISsAU5U': ['Part 3 of 5: Island Hopping to the Corinth Canal', 'dca5ac71f160bf5fcc41abb624c5f285'],
+  'QT4J3IsU1cg': ['Part 2 of 5: Touring the Mani Peninsula', 'f868ac79cd19f744c9351cad11764252'],
+  'frWnFSQYOVg': ['Touring the Mani Peninsula (Taster)', '0b1cad9a49976f520bf0b6b5586e0c28'],
+  '7AMrkvUchlE': ['Travelling Around Lefkada', '880ab00adfe0a598755f0e39a48800b5'],
+  'XyRkyKGXKiI': ['Part 1 of 5: Corfu to Parga, Syvota and Nafpaktos', '48ba7f708c0feb2974a170c04b94b1d6'],
+  'KfYo68kCd7M': ['Corfu Old Town, Paleokastritsa and Kassiopi', '0ca07d00ecf176fb65af761e6dddd4df'],
+  'VuDBGcma0ok': ['From Athens to the Athens Riviera in Under 30 Minutes', '340be71f60757961709bdbb689a97517'],
+  '2ug7pZL7hUk': ['Athens', 'cdc4028d3a7144ad1f04898a9e8dbc51'],
+  'jZ476-s1h2M': ['Corfu or Paxos?', 'fe49c9a5d99aa06d2ce93ed2c8d8fb40'],
+  'suULnFEtTxk': ['Lefkada From the North to the South of the Island', '7d594fb764dfd065a88d908a3c48c3d3'],
+  'vE7w1qOcxZg': ['Prague and Its Hidden Gems', 'e4f86e80594371fec65f05c4417f166d'],
+  '0WfwmBGp-Dk': ['North Corfu: Paleokastritsa', 'f5c73ee6ebcac5121762bb7c334bad53'],
+  'mrbVle4LHwk': ['Prague: A Quick Tour of This Beautiful UNESCO City', '87f68ea487d8d4cf917f007630e3faad'],
+  'HqV1Yd_f84c': ["Lisbon's Best Sights and Top Attractions", '4e74c476502d305946d321c858806dc7'],
+  '_nXYMh1dfD4': ['Krakow Christmas Market', '320ba0878102c978f1fbaf7dc10f2ae2'],
+  'Q4JHKkcp_ls': ['Gdansk Market: A Christmas Gem', 'cd69527f3aaddc4073eb47a260e876b4'],
+  'short:10aoF6Wg8dM': ['Best of Budapest (Short)', '7c46c80387465c4b1cbb3d92a1ee0c52'],
+  'short:ZMvWnT2JTBE': ['Rufford Park (Short)', 'b11ed066e34061cd864aae201ff8555d']
+};
+var PLACES = [
+  { id: 'corfu', map: 'greece', x: 17.04, y: 17.0, name: 'Corfu Town & the island', region: 'Corfu', blurb: "Old town lanes, the quieter coasts most visitors skip, and where our big road trip started and finished.", videos: ['KfYo68kCd7M', 'TlHaUxYNXzw', 'jZ476-s1h2M', 'XyRkyKGXKiI'] },
+  { id: 'kassiopi', map: 'greece', x: 17.04, y: 12.75, name: 'Kassiopi & the north-east', region: 'Corfu', blurb: 'A pretty harbour village, plus Agios Stefanos and Kalami Bay just along the coast.', videos: ['2uwpbV8sBeA', 'Bcv9Uc0RR6A', 'VAXqO6V1Geo'] },
+  { id: 'paleo', map: 'greece', x: 12.96, y: 15.75, name: 'Paleokastritsa', region: 'Corfu', blurb: 'Green cliffs, crystal-clear water and boat trips out to the Blue Caves.', videos: ['0WfwmBGp-Dk', 'KfYo68kCd7M', 'VAXqO6V1Geo'] },
+  { id: 'paxos', map: 'greece', x: 22.04, y: 27.5, name: 'Paxos', region: 'Ionian islands', blurb: "Corfu's little neighbour. Which island is best?", videos: ['jZ476-s1h2M'] },
+  { id: 'parga', map: 'greece', x: 25.93, y: 25.5, name: 'Parga & Syvota', region: 'Mainland coast', blurb: 'Colourful harbours and the first stops of the four-week road trip.', videos: ['XyRkyKGXKiI'] },
+  { id: 'lefkada', map: 'greece', x: 30.56, y: 38.75, name: 'Lefkada', region: 'Ionian islands', blurb: 'Turquoise water and great beaches on an island you can drive to, no ferry needed.', videos: ['7AMrkvUchlE', 'suULnFEtTxk'] },
+  { id: 'nafpaktos', map: 'greece', x: 52.41, y: 47.75, name: 'Nafpaktos', region: 'Gulf of Corinth', blurb: 'A Venetian harbour on the way down to the Peloponnese.', videos: ['XyRkyKGXKiI'] },
+  { id: 'meteora', map: 'greece', x: 48.7, y: 14.5, name: 'Meteora', region: 'Central Greece', blurb: 'Monasteries perched on top of giant stone pillars.', videos: ['1EvABYtNqt8'] },
+  { id: 'corinth', map: 'greece', x: 73.89, y: 59.25, name: 'Corinth Canal', region: 'Peloponnese', blurb: 'Where the bungee jump happened.', videos: ['MRjuISsAU5U'] },
+  { id: 'athens', map: 'greece', x: 87.59, y: 58.0, name: 'Athens & the Riviera', region: 'Attica', blurb: 'The Acropolis Museum, Lycabettus Hill and out to the coast.', videos: ['VuDBGcma0ok', '2ug7pZL7hUk'] },
+  { id: 'nafplio', map: 'greece', x: 70.37, y: 68.25, name: 'Nafplio', region: 'Peloponnese', blurb: "Venetian streets in one of Greece's prettiest towns.", videos: ['H9q7_R6Jjcc', '0ut8WgsOeWw', 'oCrvlDqLIDs'] },
+  { id: 'ermioni', map: 'greece', x: 78.7, y: 72.75, name: 'Ermioni', region: 'Peloponnese', blurb: 'A seaside town with two waterfronts, and a brilliant base for the islands.', videos: ['6xUhlBgDLfI'] },
+  { id: 'hydra', map: 'greece', x: 82.78, y: 73.75, name: 'Hydra & Spetses', region: 'Saronic islands', blurb: 'Island day trips just off the Peloponnese coast.', videos: ['MRjuISsAU5U', 'oCrvlDqLIDs'] },
+  { id: 'kalamata', map: 'greece', x: 57.59, y: 81.5, name: 'Kalamata', region: 'Peloponnese', blurb: "The farmers' market, and the city most people fly straight past.", videos: ['LpoDjHQvFiI', 'xfeMuD4AdEU'] },
+  { id: 'mani', map: 'greece', x: 61.48, y: 88.0, name: 'The Mani', region: 'Peloponnese', blurb: 'Limeni, Kardamyli and Stoupa on the wild Mani Peninsula.', videos: ['QT4J3IsU1cg', 'frWnFSQYOVg', 'oCrvlDqLIDs', '0ut8WgsOeWw'] },
+  { id: 'pylos', map: 'greece', x: 49.81, y: 85.25, name: 'Pylos, Methoni & Voidokilia', region: 'Peloponnese', blurb: "A medieval castle, a harbour town and one of Greece's best beaches.", videos: ['xfeMuD4AdEU', '0ut8WgsOeWw', 'oCrvlDqLIDs'] },
+  { id: 'koroni', map: 'greece', x: 54.81, y: 87.5, name: 'Koroni & Finikounda', region: 'Peloponnese', blurb: 'Quiet seaside towns on the Messinian coast.', videos: ['xfeMuD4AdEU', 'oCrvlDqLIDs'] }
+];
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { map: 'greece', place: null };
+  }
+  componentDidMount() {
+    var self = this;
+    function openFromLink() {
+      var m = /^#map-(.+)$/.exec(window.location.hash);
+      if (!m) return;
+      var found = PLACES.filter(function (p) { return p.id === m[1]; })[0];
+      if (!found) return;
+      self.setState({ map: found.map, place: found.id });
+      var mapSection = document.getElementById('map');
+      if (mapSection) mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    window.addEventListener('hashchange', openFromLink);
+    openFromLink();
+  }
+  renderVals() {
+    var self = this;
+    var map = this.state.map;
+    var current = null;
+    PLACES.forEach(function (p) { if (p.id === self.state.place) current = p; });
+    var place = null;
+    if (current) {
+      place = {
+        name: current.name,
+        region: current.region,
+        blurb: current.blurb,
+        countLabel: current.videos.length === 1 ? '1 video from here' : current.videos.length + ' videos from here',
+        videos: current.videos.map(function (key) {
+          var isShort = key.indexOf('short:') === 0;
+          var id = isShort ? key.slice(6) : key;
+          return {
+            url: isShort ? 'https://www.youtube.com/shorts/' + id : 'https://www.youtube.com/watch?v=' + id,
+            title: V[key][0],
+            thumb: 'images/' + V[key][1] + '.jpg'
+          };
+        })
+      };
+    }
+    return {
+      mapSrc: MAPS[map].src,
+      mapAlt: MAPS[map].alt,
+      pins: PLACES.filter(function (p) { return p.map === map; }).map(function (p) {
+        var sel = !!current && p.id === current.id;
+        return {
+          x: p.x, y: p.y, home: !!p.home, selected: sel && !p.home, unselected: !sel && !p.home,
+          aria: p.jump ? 'Show the Greece map' : (p.home ? 'Show our home, the East Midlands' : 'Show videos from ' + p.name),
+          pick: function () {
+            if (p.jump) { self.setState({ map: p.jump, place: null }); }
+            else { self.setState({ place: p.id }); }
+          }
+        };
+      }),
+      hasLabel: !!current,
+      labelX: current ? current.x : 0,
+      labelY: current ? current.y : 0,
+      labelText: current ? current.name : '',
+      noPlace: !current,
+      hasPlace: !!current,
+      place: place || { name: '', region: '', blurb: '', countLabel: '', videos: [] },
+      clearPlace: function () { self.setState({ place: null }); }
+    };
+  }
+}
+</script>
+<script>dcBoot();</script>
+</body>
+</html>
