@@ -75,7 +75,7 @@ a{color:#1F2A44}a:hover{color:#B2472F}
             <span aria-hidden="true" style="position: absolute; left: {{labelX}}%; top: {{labelY}}%; transform: translate(-50%, -150%); background: #1F2A44; color: #FFFFFF; font-weight: 700; font-size: 14px; padding: 4px 10px; border-radius: 4px; white-space: nowrap; pointer-events: none">{{labelText}}</span>
           </sc-if>
         </div>
-        <p style="margin: 14px 0 0; font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px"><span>Tap a pin to see the videos we filmed there.</span><span style="font-size: 12px; color: #13325B">Map imagery: NASA Blue Marble</span></p>
+        <p style="margin: 14px 0 0; font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px"><span>Tap a pin to see our blogs and videos from there.</span><span style="font-size: 12px; color: #13325B">Map imagery: NASA Blue Marble</span></p>
       </div>
 
       <div style="flex: 2 1 320px; min-width: 0; background: #FFFFFF; border: 2px solid #1F2A44; border-radius: 6px; padding: 28px; box-shadow: 6px 6px 0 #1F2A44">
@@ -95,6 +95,13 @@ a{color:#1F2A44}a:hover{color:#B2472F}
           <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 26px; color: #B2472F">{{place.region}}</p>
           <h2 style="margin: 0 0 8px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 28px; text-transform: uppercase; line-height: 1.1">{{place.name}}</h2>
           <p style="margin: 0 0 18px">{{place.blurb}}</p>
+          <sc-if value="{{place.hasBlogs}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-direction: column; gap: 10px; margin: 0 0 22px">
+              <sc-for list="{{place.blogs}}" as="pb" hint-placeholder-count="1">
+                <a href="{{pb.url}}" style="align-self: flex-start; background: #B2472F; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 18px; border-radius: 4px">{{pb.label}}</a>
+              </sc-for>
+            </div>
+          </sc-if>
           <p style="margin: 0 0 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5468">{{place.countLabel}}</p>
           <div style="display: flex; flex-direction: column; gap: 14px">
             <sc-for list="{{place.videos}}" as="pv" hint-placeholder-count="2">
@@ -318,13 +325,16 @@ var PLACES = [
   { id: 'meteora', map: 'greece', x: 48.7, y: 14.5, name: 'Meteora', region: 'Central Greece', blurb: 'Monasteries perched on top of giant stone pillars.', videos: ['1EvABYtNqt8'] },
   { id: 'corinth', map: 'greece', x: 73.89, y: 59.25, name: 'Corinth Canal', region: 'Peloponnese', blurb: 'Where the bungee jump happened.', videos: ['MRjuISsAU5U'] },
   { id: 'athens', map: 'greece', x: 87.59, y: 58.0, name: 'Athens & the Riviera', region: 'Attica', blurb: 'The Acropolis Museum, Lycabettus Hill and out to the coast.', videos: ['VuDBGcma0ok', '2ug7pZL7hUk'] },
-  { id: 'nafplio', map: 'greece', x: 70.37, y: 68.25, name: 'Nafplio', region: 'Peloponnese', blurb: "Venetian streets in one of Greece's prettiest towns.", videos: ['H9q7_R6Jjcc', '0ut8WgsOeWw', 'oCrvlDqLIDs'] },
-  { id: 'ermioni', map: 'greece', x: 78.7, y: 72.75, name: 'Ermioni', region: 'Peloponnese', blurb: 'A seaside town with two waterfronts, and a brilliant base for the islands.', videos: ['6xUhlBgDLfI'] },
+  { id: 'nafplio', map: 'greece', x: 70.37, y: 68.25, name: 'Nafplio', region: 'Peloponnese', blurb: "Venetian streets in one of Greece's prettiest towns.", videos: ['H9q7_R6Jjcc', '0ut8WgsOeWw', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-nafplio.html', title: 'Nafplio' }] },
+  { id: 'ermioni', map: 'greece', x: 78.7, y: 72.75, name: 'Ermioni', region: 'Peloponnese', blurb: 'A seaside town with two waterfronts, and a brilliant base for the islands.', videos: ['6xUhlBgDLfI'], blogs: [{ url: 'blog-ermioni.html', title: 'Ermioni' }] },
   { id: 'hydra', map: 'greece', x: 82.78, y: 73.75, name: 'Hydra & Spetses', region: 'Saronic islands', blurb: 'Island day trips just off the Peloponnese coast.', videos: ['MRjuISsAU5U', 'oCrvlDqLIDs'] },
   { id: 'kalamata', map: 'greece', x: 57.59, y: 81.5, name: 'Kalamata', region: 'Peloponnese', blurb: "The farmers' market, and the city most people fly straight past.", videos: ['LpoDjHQvFiI', 'xfeMuD4AdEU'] },
   { id: 'mani', map: 'greece', x: 61.48, y: 88.0, name: 'The Mani', region: 'Peloponnese', blurb: 'Limeni, Kardamyli and Stoupa on the wild Mani Peninsula.', videos: ['QT4J3IsU1cg', 'frWnFSQYOVg', 'oCrvlDqLIDs', '0ut8WgsOeWw'] },
-  { id: 'pylos', map: 'greece', x: 49.81, y: 85.25, name: 'Pylos, Methoni & Voidokilia', region: 'Peloponnese', blurb: "A medieval castle, a harbour town and one of Greece's best beaches.", videos: ['xfeMuD4AdEU', '0ut8WgsOeWw', 'oCrvlDqLIDs'] },
-  { id: 'koroni', map: 'greece', x: 54.81, y: 87.5, name: 'Koroni & Finikounda', region: 'Peloponnese', blurb: 'Quiet seaside towns on the Messinian coast.', videos: ['xfeMuD4AdEU', 'oCrvlDqLIDs'] }
+  { id: 'pylos', map: 'greece', x: 49.81, y: 85.25, name: 'Pylos, Methoni & Voidokilia', region: 'Peloponnese', blurb: "A medieval castle, a harbour town and one of Greece's best beaches.", videos: ['xfeMuD4AdEU', '0ut8WgsOeWw', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-pylos.html', title: 'Pylos' }, { url: 'blog-methoni.html', title: 'Methoni' }, { url: 'blog-voidokilia.html', title: 'Voidokilia Beach' }] },
+  { id: 'koroni', map: 'greece', x: 54.81, y: 87.5, name: 'Koroni & Finikounda', region: 'Peloponnese', blurb: 'Quiet seaside towns on the Messinian coast.', videos: ['xfeMuD4AdEU', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-koroni.html', title: 'Koroni' }, { url: 'blog-finikounda.html', title: 'Finikounda' }] },
+  { id: 'poros', map: 'greece', x: 82.58, y: 69.93, name: 'Poros', region: 'Saronic islands', blurb: 'A scenic drive, a little boat and a hidden taverna, on an easy day trip from Ermioni.', videos: ['6xUhlBgDLfI'], blogs: [{ url: 'blog-poros.html', title: 'Poros' }] },
+  { id: 'gythio', map: 'greece', x: 65.99, y: 88.52, name: 'Gythio', region: 'The Mani', blurb: 'A colourful harbour town, Cranae Island and the ghost ship of Valtaki Beach.', videos: ['QT4J3IsU1cg'], blogs: [{ url: 'blog-gythio.html', title: 'Gythio' }] },
+  { id: 'vigklafia', map: 'greece', x: 74.6, y: 95.03, name: 'Vigklafia & Elafonisos', region: 'Southern Peloponnese', blurb: 'A sleepy village at the end of the road, and the Caribbean-blue water of Simos Beach.', videos: [], blogs: [{ url: 'blog-vigklafia.html', title: 'Vigklafia & Elafonisos' }] }
 ];
 class Component extends DCLogic {
   constructor(props) {
@@ -356,7 +366,9 @@ class Component extends DCLogic {
         name: current.name,
         region: current.region,
         blurb: current.blurb,
-        countLabel: current.videos.length === 1 ? '1 video from here' : current.videos.length + ' videos from here',
+        countLabel: current.videos.length === 0 ? '' : (current.videos.length === 1 ? '1 video from here' : current.videos.length + ' videos from here'),
+        blogs: (current.blogs || []).map(function (b) { return { url: b.url, label: 'Read our blog: ' + b.title + ' →' }; }),
+        hasBlogs: !!(current.blogs && current.blogs.length),
         videos: current.videos.map(function (key) {
           var isShort = key.indexOf('short:') === 0;
           var id = isShort ? key.slice(6) : key;
@@ -388,7 +400,7 @@ class Component extends DCLogic {
       labelText: current ? current.name : '',
       noPlace: !current,
       hasPlace: !!current,
-      place: place || { name: '', region: '', blurb: '', countLabel: '', videos: [] },
+      place: place || { name: '', region: '', blurb: '', countLabel: '', videos: [], blogs: [], hasBlogs: false },
       clearPlace: function () { self.setState({ place: null }); }
     };
   }
