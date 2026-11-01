@@ -80,15 +80,21 @@ a{color:#1F2A44}a:hover{color:#B2472F}
 
       <div style="flex: 2 1 320px; min-width: 0; background: #FFFFFF; border: 2px solid #1F2A44; border-radius: 6px; padding: 28px; box-shadow: 6px 6px 0 #1F2A44">
         <sc-if value="{{noPlace}}" hint-placeholder-val="{{true}}">
-          <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 26px; color: #B2472F">the route</p>
-          <h2 style="margin: 0 0 16px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 26px; text-transform: uppercase; line-height: 1.1">4 weeks across Greece</h2>
-          <ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px">
-            <li><strong>Corfu to Parga</strong> · Syvota, Nafpaktos</li>
-            <li><strong>The Mani</strong> · Limeni, Kardamyli, Stoupa</li>
-            <li><strong>Islands &amp; Corinth</strong> · Hydra, Spetses, the canal</li>
-            <li><strong>Meteora</strong> · monasteries in the sky</li>
-            <li><strong>Back to Corfu</strong> · Kassiopi, Paleokastritsa</li>
-          </ol>
+          <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 26px; color: #B2472F">the full story</p>
+          <h2 style="margin: 0 0 16px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 26px; text-transform: uppercase; line-height: 1.1">Places to get lost in</h2>
+          <!-- Blog list: keep in alphabetical order. Add a new line for each new blog post. -->
+          <ul style="margin: 0; padding: 0; list-style: none; columns: 2 150px; column-gap: 24px">
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-ermioni.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Ermioni</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-finikounda.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Finikounda</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-gythio.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Gythio</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-koroni.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Koroni</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-methoni.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Methoni</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-nafplio.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Nafplio</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-poros.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Poros</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-pylos.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Pylos</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-vigklafia.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Vigklafia &amp; Elafonisos</a></li>
+            <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-voidokilia.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Voidokilia Beach</a></li>
+          </ul>
           <p style="margin: 20px 0 0; font-family: 'Caveat', cursive; font-size: 24px; color: #B2472F">pick a pin on the map to start exploring</p>
         </sc-if>
         <sc-if value="{{hasPlace}}" hint-placeholder-val="{{false}}">
