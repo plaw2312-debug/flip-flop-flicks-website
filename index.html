@@ -21,12 +21,20 @@ img{max-width:100%}
 .hero-bleed,.hero-frame{display:none}
 @media (min-width: 1024px){
   .hero-bleed{display:block;position:absolute;inset:0 0 24px 0;pointer-events:none;-webkit-mask-box-image:url('images/66d79fd1bbba2666c4d483e2ac97fa63.webp') 150 130 fill / 70px 60px stretch;mask-border:url('images/66d79fd1bbba2666c4d483e2ac97fa63.webp') 150 130 fill / 70px 60px stretch}
-  .hero-bleed-photo{position:absolute;top:0;bottom:0;right:0;left:max(370px, calc(75% - 520px));background:#2C6FB7 url('images/ed133b5966c1047bc9eb1c4921556526.jpg') 100% 50% / auto 100% no-repeat;-webkit-mask-image:linear-gradient(to right,transparent 0,transparent 110px,rgba(0,0,0,.5) 170px,#000 230px);mask-image:linear-gradient(to right,transparent 0,transparent 110px,rgba(0,0,0,.5) 170px,#000 230px)}
+  .hero-bleed-photo{position:absolute;top:0;bottom:0;right:0;left:max(335px, calc(50% - 285px));background:#2C6FB7 url('images/8b4b557180b40ceb072669e91710e9c5.jpg') 100% 0% / cover no-repeat;-webkit-mask-image:linear-gradient(to right,transparent 0,transparent 120px,rgba(0,0,0,.5) 175px,#000 230px);mask-image:linear-gradient(to right,transparent 0,transparent 120px,rgba(0,0,0,.5) 175px,#000 230px)}
   .hero-frame{display:block;position:absolute;inset:0 0 24px 0;pointer-events:none;border-style:solid;border-width:70px 60px;border-image:url('images/552563ab89ecd9b79ee8d158bae0f17d.webp') 150 130 fill / 70px 60px stretch}
   .hero-photo-inner img{visibility:hidden}
 }
 @supports not ((-webkit-mask-box-image: none) or (mask-border: none)){
   @media (min-width: 1024px){.hero-bleed-photo{top:34px;bottom:30px;right:30px}}
+}
+@media (min-width: 1024px){
+  .hero-text{flex:0 1 440px !important;padding:32px 20px 32px 32px !important}
+  .hero-text h1{font-size:34px !important;margin-bottom:14px !important}
+  .hero-text p{font-size:16px !important;margin-bottom:22px !important}
+  .hero-text p:first-child{font-size:13px !important;margin-bottom:6px !important}
+  .hero-text a{font-size:13px !important;padding:11px 14px !important;white-space:nowrap}
+  .hero-text div[style*="gap: 14px"]{flex-wrap:nowrap !important;gap:10px !important}
 }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +70,7 @@ a{color:#13325B}a:hover{color:#1B5FA6}
     <div aria-hidden="true" class="hero-bleed"><div class="hero-bleed-photo"></div></div>
     <div aria-hidden="true" class="hero-frame"></div>
     <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 56px 24px 48px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
-      <div style="flex: 1 1 440px; min-width: 0; position: relative; padding: 48px 40px; box-sizing: border-box">
+      <div class="hero-text" style="flex: 1 1 440px; min-width: 0; position: relative; padding: 48px 40px; box-sizing: border-box">
         <div style="position: relative">
           <p style="margin: 0 0 6px; font-size: 15px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: #13325B">Our love affair with</p>
           <h1 style="margin: 0 0 20px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 48px; line-height: 1.05; color: #13325B; transform: rotate(-2deg); transform-origin: left">GREECE, greek islands and the peloponnese</h1>
