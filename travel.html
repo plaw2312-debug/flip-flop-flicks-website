@@ -59,8 +59,9 @@ a{color:#1F2A44}a:hover{color:#B2472F}
 
     <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
       <div style="flex: 3 1 560px; min-width: 0">
-        <div style="position: relative; border: 2px solid #1F2A44; border-radius: 6px; overflow: hidden; background: #CFE0E3; box-shadow: 6px 6px 0 #1F2A44">
-          <img src="{{mapSrc}}" alt="{{mapAlt}}" style="width: 100%; height: auto; display: block">
+        <div class="map-view" style="position: relative; border: 2px solid #1F2A44; border-radius: 6px; overflow: hidden; background: #C9E3F3; box-shadow: 6px 6px 0 #1F2A44; aspect-ratio: 1 / 1; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none">
+          <div class="map-stage" style="position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: {{mapW}} / {{mapH}}">
+          <img src="{{mapSrc}}" alt="{{mapAlt}}" draggable="false" style="width: 100%; height: 100%; display: block; pointer-events: none">
           <sc-for list="{{pins}}" as="p" hint-placeholder-count="6">
             <button type="button" onClick="{{p.pick}}" aria-label="{{p.aria}}" style="position: absolute; left: {{p.x}}%; top: {{p.y}}%; transform: translate(-50%, -50%); width: 44px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center">
               <sc-if value="{{p.home}}" hint-placeholder-val="{{false}}">
@@ -77,8 +78,14 @@ a{color:#1F2A44}a:hover{color:#B2472F}
           <sc-if value="{{hasLabel}}" hint-placeholder-val="{{false}}">
             <span aria-hidden="true" style="position: absolute; left: {{labelX}}%; top: {{labelY}}%; transform: translate(-50%, -150%); background: #1F2A44; color: #FFFFFF; font-weight: 700; font-size: 14px; padding: 4px 10px; border-radius: 4px; white-space: nowrap; pointer-events: none">{{labelText}}</span>
           </sc-if>
+          </div>
+          <div style="position: absolute; right: 10px; top: 10px; display: flex; flex-direction: column; gap: 6px; z-index: 5">
+            <button type="button" class="map-zoom-in" aria-label="Zoom in" style="width: 40px; height: 40px; border: 2px solid #1F2A44; border-radius: 6px; background: #FFFFFF; color: #1F2A44; font-size: 22px; font-weight: 700; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">+</button>
+            <button type="button" class="map-zoom-out" aria-label="Zoom out" style="width: 40px; height: 40px; border: 2px solid #1F2A44; border-radius: 6px; background: #FFFFFF; color: #1F2A44; font-size: 22px; font-weight: 700; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">–</button>
+            <button type="button" class="map-zoom-all" aria-label="Show the whole of Greece" title="Show the whole of Greece" style="width: 40px; height: 40px; border: 2px solid #1F2A44; border-radius: 6px; background: #FFFFFF; color: #1F2A44; font-size: 22px; font-weight: 700; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; font-size: 13px">All</button>
+          </div>
         </div>
-        <p style="margin: 14px 0 0; font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px"><span>Tap a pin to see our blogs and videos from there.</span><span style="font-size: 12px; color: #13325B">Map imagery: NASA Blue Marble</span></p>
+        <p style="margin: 14px 0 0; font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px"><span>Drag the map to explore and use + and – to zoom. Tap a pin to see our blogs and videos from there.</span><span style="font-size: 12px; color: #13325B">Map: <a href="https://mapswire.com/maps/greece/" target="_blank" rel="noopener" style="color: #13325B">Mapswire</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #13325B">CC BY 4.0</a>)</span></p>
       </div>
 
       <div style="flex: 2 1 320px; min-width: 0; background: #FFFFFF; border: 2px solid #1F2A44; border-radius: 6px; padding: 28px; box-shadow: 6px 6px 0 #1F2A44">
@@ -315,7 +322,7 @@ a{color:#1F2A44}a:hover{color:#B2472F}
 <script src="dc-lite.js"></script>
 <script>
 var MAPS = {
-  greece: { src: 'images/7ba6381e5b2fd57ede1407e5866c33f0.jpg', alt: 'Satellite map of western and southern Greece with pins for every place we have filmed', label: 'Greece' }
+  greece: { src: 'images/97e4329252674928251670e9b27ea5cf.jpg', alt: 'Map of Greece with pins for every place we have filmed', label: 'Greece', w: 2217, h: 2312, start: [77, 689, 1163, 1761] }
 };
 var V = {
   '6xUhlBgDLfI': ['A Perfect Peloponnese Base: Ermioni', 'e4ac2493f7564fd993116002f8d65c65'],
@@ -349,27 +356,123 @@ var V = {
   'short:ZMvWnT2JTBE': ['Rufford Park (Short)', 'b11ed066e34061cd864aae201ff8555d']
 };
 var PLACES = [
-  { id: 'corfu', map: 'greece', x: 17.04, y: 17.0, name: 'Corfu Town & the island', region: 'Corfu', blurb: "Old town lanes, the quieter coasts most visitors skip, and where our big road trip started and finished.", videos: ['KfYo68kCd7M', 'TlHaUxYNXzw', 'jZ476-s1h2M', 'XyRkyKGXKiI'], blogs: [{ url: 'blog-corfu-old-town.html', title: 'Corfu Old Town' }] },
-  { id: 'kassiopi', map: 'greece', x: 17.04, y: 12.75, name: 'Kassiopi & the north-east', region: 'Corfu', blurb: 'A pretty harbour village, plus Agios Stefanos and Kalami Bay just along the coast.', videos: ['2uwpbV8sBeA', 'Bcv9Uc0RR6A', 'VAXqO6V1Geo'], blogs: [{ url: 'blog-kassiopi.html', title: 'Kassiopi' }] },
-  { id: 'paleo', map: 'greece', x: 12.96, y: 15.75, name: 'Paleokastritsa', region: 'Corfu', blurb: 'Green cliffs, crystal-clear water and boat trips out to the Blue Caves.', videos: ['0WfwmBGp-Dk', 'KfYo68kCd7M', 'VAXqO6V1Geo'], blogs: [{ url: 'blog-paleokastritsa.html', title: 'Paleokastritsa' }] },
-  { id: 'paxos', map: 'greece', x: 22.04, y: 27.5, name: 'Paxos', region: 'Ionian islands', blurb: "Corfu's little neighbour. Which island is best?", videos: ['jZ476-s1h2M'] },
-  { id: 'parga', map: 'greece', x: 25.93, y: 25.5, name: 'Parga & Syvota', region: 'Mainland coast', blurb: 'Colourful harbours and the first stops of the four-week road trip.', videos: ['XyRkyKGXKiI'] },
-  { id: 'lefkada', map: 'greece', x: 30.56, y: 38.75, name: 'Lefkada', region: 'Ionian islands', blurb: 'Turquoise water and great beaches on an island you can drive to, no ferry needed.', videos: ['7AMrkvUchlE', 'suULnFEtTxk'] },
-  { id: 'nafpaktos', map: 'greece', x: 52.41, y: 47.75, name: 'Nafpaktos', region: 'Gulf of Corinth', blurb: 'A Venetian harbour on the way down to the Peloponnese.', videos: ['XyRkyKGXKiI'] },
-  { id: 'meteora', map: 'greece', x: 48.7, y: 14.5, name: 'Meteora', region: 'Central Greece', blurb: 'Monasteries perched on top of giant stone pillars.', videos: ['1EvABYtNqt8'] },
-  { id: 'corinth', map: 'greece', x: 73.89, y: 59.25, name: 'Corinth Canal', region: 'Peloponnese', blurb: 'Where the bungee jump happened.', videos: ['MRjuISsAU5U'] },
-  { id: 'athens', map: 'greece', x: 87.59, y: 58.0, name: 'Athens & the Riviera', region: 'Attica', blurb: 'The Acropolis Museum, Lycabettus Hill and out to the coast.', videos: ['VuDBGcma0ok', '2ug7pZL7hUk'] },
-  { id: 'nafplio', map: 'greece', x: 70.37, y: 68.25, name: 'Nafplio', region: 'Peloponnese', blurb: "Venetian streets in one of Greece's prettiest towns.", videos: ['H9q7_R6Jjcc', '0ut8WgsOeWw', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-nafplio.html', title: 'Nafplio' }] },
-  { id: 'ermioni', map: 'greece', x: 78.7, y: 72.75, name: 'Ermioni', region: 'Peloponnese', blurb: 'A seaside town with two waterfronts, and a brilliant base for the islands.', videos: ['6xUhlBgDLfI'], blogs: [{ url: 'blog-ermioni.html', title: 'Ermioni' }] },
-  { id: 'hydra', map: 'greece', x: 82.78, y: 73.75, name: 'Hydra & Spetses', region: 'Saronic islands', blurb: 'Island day trips just off the Peloponnese coast.', videos: ['MRjuISsAU5U', 'oCrvlDqLIDs'] },
-  { id: 'kalamata', map: 'greece', x: 57.59, y: 81.5, name: 'Kalamata', region: 'Peloponnese', blurb: "The farmers' market, and the city most people fly straight past.", videos: ['LpoDjHQvFiI', 'xfeMuD4AdEU'] },
-  { id: 'mani', map: 'greece', x: 61.48, y: 88.0, name: 'The Mani', region: 'Peloponnese', blurb: 'Limeni, Kardamyli and Stoupa on the wild Mani Peninsula.', videos: ['QT4J3IsU1cg', 'frWnFSQYOVg', 'oCrvlDqLIDs', '0ut8WgsOeWw'] },
-  { id: 'pylos', map: 'greece', x: 49.81, y: 85.25, name: 'Pylos, Methoni & Voidokilia', region: 'Peloponnese', blurb: "A medieval castle, a harbour town and one of Greece's best beaches.", videos: ['xfeMuD4AdEU', '0ut8WgsOeWw', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-pylos.html', title: 'Pylos' }, { url: 'blog-methoni.html', title: 'Methoni' }, { url: 'blog-voidokilia.html', title: 'Voidokilia Beach' }] },
-  { id: 'koroni', map: 'greece', x: 54.81, y: 87.5, name: 'Koroni & Finikounda', region: 'Peloponnese', blurb: 'Quiet seaside towns on the Messinian coast.', videos: ['xfeMuD4AdEU', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-koroni.html', title: 'Koroni' }, { url: 'blog-finikounda.html', title: 'Finikounda' }] },
-  { id: 'poros', map: 'greece', x: 82.58, y: 69.93, name: 'Poros', region: 'Saronic islands', blurb: 'A scenic drive, a little boat and a hidden taverna, on an easy day trip from Ermioni.', videos: ['6xUhlBgDLfI'], blogs: [{ url: 'blog-poros.html', title: 'Poros' }] },
-  { id: 'gythio', map: 'greece', x: 65.99, y: 88.52, name: 'Gythio', region: 'The Mani', blurb: 'A colourful harbour town, Cranae Island and the ghost ship of Valtaki Beach.', videos: ['QT4J3IsU1cg'], blogs: [{ url: 'blog-gythio.html', title: 'Gythio' }] },
-  { id: 'vigklafia', map: 'greece', x: 74.6, y: 95.03, name: 'Vigklafia & Elafonisos', region: 'Southern Peloponnese', blurb: 'A sleepy village at the end of the road, and the Caribbean-blue water of Simos Beach.', videos: [], blogs: [{ url: 'blog-vigklafia.html', title: 'Vigklafia & Elafonisos' }] }
+  { id: 'corfu', map: 'greece', x: 9.16, y: 36.35, name: 'Corfu Town & the island', region: 'Corfu', blurb: "Old town lanes, the quieter coasts most visitors skip, and where our big road trip started and finished.", videos: ['KfYo68kCd7M', 'TlHaUxYNXzw', 'jZ476-s1h2M', 'XyRkyKGXKiI'], blogs: [{ url: 'blog-corfu-old-town.html', title: 'Corfu Old Town' }] },
+  { id: 'kassiopi', map: 'greece', x: 9.15, y: 34.28, name: 'Kassiopi & the north-east', region: 'Corfu', blurb: 'A pretty harbour village, plus Agios Stefanos and Kalami Bay just along the coast.', videos: ['2uwpbV8sBeA', 'Bcv9Uc0RR6A', 'VAXqO6V1Geo'], blogs: [{ url: 'blog-kassiopi.html', title: 'Kassiopi' }] },
+  { id: 'paleo', map: 'greece', x: 7.0, y: 35.75, name: 'Paleokastritsa', region: 'Corfu', blurb: 'Green cliffs, crystal-clear water and boat trips out to the Blue Caves.', videos: ['0WfwmBGp-Dk', 'KfYo68kCd7M', 'VAXqO6V1Geo'], blogs: [{ url: 'blog-paleokastritsa.html', title: 'Paleokastritsa' }] },
+  { id: 'paxos', map: 'greece', x: 11.8, y: 41.66, name: 'Paxos', region: 'Ionian islands', blurb: "Corfu's little neighbour. Which island is best?", videos: ['jZ476-s1h2M'] },
+  { id: 'parga', map: 'greece', x: 13.95, y: 40.56, name: 'Parga & Syvota', region: 'Mainland coast', blurb: 'Colourful harbours and the first stops of the four-week road trip.', videos: ['XyRkyKGXKiI'] },
+  { id: 'lefkada', map: 'greece', x: 16.45, y: 47.15, name: 'Lefkada', region: 'Ionian islands', blurb: 'Turquoise water and great beaches on an island you can drive to, no ferry needed.', videos: ['7AMrkvUchlE', 'suULnFEtTxk'] },
+  { id: 'nafpaktos', map: 'greece', x: 28.25, y: 51.54, name: 'Nafpaktos', region: 'Gulf of Corinth', blurb: 'A Venetian harbour on the way down to the Peloponnese.', videos: ['XyRkyKGXKiI'] },
+  { id: 'meteora', map: 'greece', x: 26.25, y: 35.15, name: 'Meteora', region: 'Central Greece', blurb: 'Monasteries perched on top of giant stone pillars.', videos: ['1EvABYtNqt8'] },
+  { id: 'corinth', map: 'greece', x: 39.81, y: 57.11, name: 'Corinth Canal', region: 'Peloponnese', blurb: 'Where the bungee jump happened.', videos: ['MRjuISsAU5U'] },
+  { id: 'athens', map: 'greece', x: 47.24, y: 56.52, name: 'Athens & the Riviera', region: 'Attica', blurb: 'The Acropolis Museum, Lycabettus Hill and out to the coast.', videos: ['VuDBGcma0ok', '2ug7pZL7hUk'] },
+  { id: 'nafplio', map: 'greece', x: 37.96, y: 61.57, name: 'Nafplio', region: 'Peloponnese', blurb: "Venetian streets in one of Greece's prettiest towns.", videos: ['H9q7_R6Jjcc', '0ut8WgsOeWw', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-nafplio.html', title: 'Nafplio' }] },
+  { id: 'ermioni', map: 'greece', x: 42.46, y: 63.76, name: 'Ermioni', region: 'Peloponnese', blurb: 'A seaside town with two waterfronts, and a brilliant base for the islands.', videos: ['6xUhlBgDLfI'], blogs: [{ url: 'blog-ermioni.html', title: 'Ermioni' }] },
+  { id: 'hydra', map: 'greece', x: 44.66, y: 64.19, name: 'Hydra & Spetses', region: 'Saronic islands', blurb: 'Island day trips just off the Peloponnese coast.', videos: ['MRjuISsAU5U', 'oCrvlDqLIDs'] },
+  { id: 'kalamata', map: 'greece', x: 31.09, y: 67.93, name: 'Kalamata', region: 'Peloponnese', blurb: "The farmers' market, and the city most people fly straight past.", videos: ['LpoDjHQvFiI', 'xfeMuD4AdEU'] },
+  { id: 'mani', map: 'greece', x: 32.86, y: 70.79, name: 'The Mani', region: 'Peloponnese', blurb: 'Limeni, Kardamyli and Stoupa on the wild Mani Peninsula.', videos: ['QT4J3IsU1cg', 'frWnFSQYOVg', 'oCrvlDqLIDs', '0ut8WgsOeWw'] },
+  { id: 'pylos', map: 'greece', x: 26.91, y: 69.44, name: 'Pylos, Methoni & Voidokilia', region: 'Peloponnese', blurb: "A medieval castle, a harbour town and one of Greece's best beaches.", videos: ['xfeMuD4AdEU', '0ut8WgsOeWw', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-pylos.html', title: 'Pylos' }, { url: 'blog-methoni.html', title: 'Methoni' }, { url: 'blog-voidokilia.html', title: 'Voidokilia Beach' }] },
+  { id: 'koroni', map: 'greece', x: 29.52, y: 70.84, name: 'Koroni & Finikounda', region: 'Peloponnese', blurb: 'Quiet seaside towns on the Messinian coast.', videos: ['xfeMuD4AdEU', 'oCrvlDqLIDs'], blogs: [{ url: 'blog-koroni.html', title: 'Koroni' }, { url: 'blog-finikounda.html', title: 'Finikounda' }] },
+  { id: 'poros', map: 'greece', x: 44.51, y: 62.38, name: 'Poros', region: 'Saronic islands', blurb: 'A scenic drive, a little boat and a hidden taverna, on an easy day trip from Ermioni.', videos: ['6xUhlBgDLfI'], blogs: [{ url: 'blog-poros.html', title: 'Poros' }] },
+  { id: 'gythio', map: 'greece', x: 35.62, y: 71.3, name: 'Gythio', region: 'The Mani', blurb: 'A colourful harbour town, Cranae Island and the ghost ship of Valtaki Beach.', videos: ['QT4J3IsU1cg'], blogs: [{ url: 'blog-gythio.html', title: 'Gythio' }] },
+  { id: 'vigklafia', map: 'greece', x: 39.71, y: 74.38, name: 'Vigklafia & Elafonisos', region: 'Southern Peloponnese', blurb: 'A sleepy village at the end of the road, and the Caribbean-blue water of Simos Beach.', videos: [], blogs: [{ url: 'blog-vigklafia.html', title: 'Vigklafia & Elafonisos' }] }
 ];
+// Draggable, zoomable map. The view survives the page re-rendering.
+var MAPVIEW = { s: 0, tx: 0, ty: 0, ready: false };
+function mapViewAttach(M) {
+  var vp = document.querySelector('.map-view');
+  var stage = document.querySelector('.map-stage');
+  if (!vp || !stage || !M) return;
+  var V = MAPVIEW;
+  function vw() { return vp.clientWidth; }
+  function vh() { return vp.clientHeight; }
+  function minS() { return Math.min(vw() / M.w, vh() / M.h); }
+  function maxS() { return Math.max(minS() * 1.01, 1.25); }
+  function clamp() {
+    var w = M.w * V.s, h = M.h * V.s;
+    V.tx = w <= vw() ? (vw() - w) / 2 : Math.min(0, Math.max(vw() - w, V.tx));
+    V.ty = h <= vh() ? (vh() - h) / 2 : Math.min(0, Math.max(vh() - h, V.ty));
+  }
+  function apply() {
+    clamp();
+    stage.style.width = (M.w * V.s) + 'px';
+    stage.style.transform = 'translate(' + V.tx + 'px,' + V.ty + 'px)';
+  }
+  function fitBox(b) {
+    V.s = Math.min(vw() / (b[2] - b[0]), vh() / (b[3] - b[1]));
+    V.s = Math.max(minS(), Math.min(maxS(), V.s));
+    V.tx = vw() / 2 - (b[0] + b[2]) / 2 * V.s;
+    V.ty = vh() / 2 - (b[1] + b[3]) / 2 * V.s;
+  }
+  function zoomAt(f, cx, cy) {
+    var ns = Math.max(minS(), Math.min(maxS(), V.s * f));
+    V.tx = cx - (cx - V.tx) * ns / V.s;
+    V.ty = cy - (cy - V.ty) * ns / V.s;
+    V.s = ns; apply();
+  }
+  if (!V.ready || V.lastW !== vw()) {
+    if (!V.ready) fitBox(M.start);
+    else { var k = vw() / V.lastW; V.s *= k; V.tx *= k; V.ty *= k; }
+    V.ready = true; V.lastW = vw();
+  }
+  apply();
+  vp.querySelector('.map-zoom-in').onclick = function () { zoomAt(1.5, vw() / 2, vh() / 2); };
+  vp.querySelector('.map-zoom-out').onclick = function () { zoomAt(1 / 1.5, vw() / 2, vh() / 2); };
+  vp.querySelector('.map-zoom-all').onclick = function () { V.s = minS(); apply(); };
+  if (vp._bound) return;
+  vp._bound = true;
+  var pts = {}, moved = 0, last = null, pinch = null;
+  function count() { return Object.keys(pts).length; }
+  vp.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.map-zoom-in, .map-zoom-out, .map-zoom-all')) return;
+    pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+    if (count() === 1) { moved = 0; last = { x: e.clientX, y: e.clientY }; }
+    if (count() === 2) {
+      var p = Object.values(pts);
+      pinch = { d: Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y) };
+    }
+    vp.style.cursor = 'grabbing';
+  });
+  vp.addEventListener('pointermove', function (e) {
+    if (!pts[e.pointerId]) return;
+    pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+    if (count() === 2 && pinch) {
+      var p = Object.values(pts), r = vp.getBoundingClientRect();
+      var d = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+      zoomAt(d / pinch.d, (p[0].x + p[1].x) / 2 - r.left, (p[0].y + p[1].y) / 2 - r.top);
+      pinch.d = d; moved = 99; return;
+    }
+    if (count() === 1 && last) {
+      var dx = e.clientX - last.x, dy = e.clientY - last.y;
+      moved += Math.abs(dx) + Math.abs(dy);
+      if (moved > 6 && !vp.hasPointerCapture(e.pointerId)) vp.setPointerCapture(e.pointerId);
+      V.tx += dx; V.ty += dy; last = { x: e.clientX, y: e.clientY }; apply();
+    }
+  });
+  function up(e) {
+    delete pts[e.pointerId];
+    if (count() < 2) pinch = null;
+    if (count() === 1) { var p = Object.values(pts)[0]; last = { x: p.x, y: p.y }; }
+    if (count() === 0) { last = null; vp.style.cursor = 'grab'; }
+  }
+  vp.addEventListener('pointerup', up);
+  vp.addEventListener('pointercancel', up);
+  vp.addEventListener('click', function (e) { if (moved > 6) { e.stopPropagation(); e.preventDefault(); } moved = 0; }, true);
+  vp.addEventListener('wheel', function (e) {
+    if (!e.ctrlKey) return;
+    e.preventDefault();
+    var r = vp.getBoundingClientRect();
+    zoomAt(Math.exp(-e.deltaY / 200), e.clientX - r.left, e.clientY - r.top);
+  }, { passive: false });
+  vp.addEventListener('dblclick', function (e) {
+    var r = vp.getBoundingClientRect(); zoomAt(1.6, e.clientX - r.left, e.clientY - r.top);
+  });
+  if (!window._mapResize) {
+    window._mapResize = true;
+    window.addEventListener('resize', function () { mapViewAttach(M); });
+  }
+}
+
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -391,6 +494,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     var self = this;
+    Promise.resolve().then(function () { mapViewAttach(MAPS[self.state.map]); });
     var map = this.state.map;
     var current = null;
     PLACES.forEach(function (p) { if (p.id === self.state.place) current = p; });
@@ -415,6 +519,8 @@ class Component extends DCLogic {
       };
     }
     return {
+      mapW: MAPS[map].w,
+      mapH: MAPS[map].h,
       mapSrc: MAPS[map].src,
       mapAlt: MAPS[map].alt,
       pins: PLACES.filter(function (p) { return p.map === map; }).map(function (p) {
