@@ -13,6 +13,7 @@ img{max-width:100%}
 }
 .paper-banner{position:absolute;inset:0 0 24px 0;border-style:solid;border-width:70px 60px;border-image:url('images/66d79fd1bbba2666c4d483e2ac97fa63.webp') 150 130 fill / 70px 60px stretch}
 @media (max-width: 640px){.paper-banner{border-width:40px 22px;border-image-width:40px 22px}}
+@media (max-width: 640px){.coming-soon{font-size:30px !important}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@400;500;700&amp;family=Caveat:wght@600&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
@@ -121,26 +122,35 @@ a{color:#1F2A44}a:hover{color:#B2472F}
   </section>
 
   <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 72px; display: flex; flex-wrap: wrap; gap: 32px">
-    <div style="flex: 1 1 380px; min-width: 0; background: #B2472F; color: #FFFFFF; border-radius: 6px; padding: 32px">
-      <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 26px; color: #F4C542">in the bag</p>
-      <h2 style="margin: 0 0 14px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 28px; text-transform: uppercase">What we film with</h2>
-      <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px">
-        <li>[Camera]</li>
-        <li>[Drone]</li>
-        <li>[Microphone]</li>
-        <li>[Editing software]</li>
-      </ul>
+    <div style="flex: 1 1 380px; min-width: 0; position: relative; overflow: hidden; background: #B2472F; color: #FFFFFF; border-radius: 6px; padding: 32px; display: flex; flex-direction: column">
+      <p style="margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: #FFFFFF">What we pack in our bags</p>
+      <h2 style="margin: 0 0 6px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 28px; text-transform: uppercase">Our packing list</h2>
+      <p style="margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: #FFFFFF">Essentials, gadgets, must-haves</p>
+      <div style="flex: 1; min-height: 240px; position: relative">
+        <span class="coming-soon" aria-label="Coming soon" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-45deg); white-space: nowrap; font-family: 'Permanent Marker', cursive; font-size: 44px; letter-spacing: 0.06em; color: #F4C542; border: 4px solid #F4C542; border-radius: 6px; padding: 4px 20px; pointer-events: none">COMING SOON</span>
+      </div>
     </div>
-    <form style="flex: 1 1 440px; min-width: 0; background: #FFFFFF; border: 2px solid #1F2A44; border-radius: 6px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+    <!-- Web3Forms: replace 0315765f-6e6c-4b5f-8711-ff977d4daa9c below with the access key emailed to you by Web3Forms -->
+    <form id="get-in-touch" action="https://api.web3forms.com/submit" method="POST" onsubmit="this.querySelector('[name=Newsletter]').value=this.querySelector('#about-news').checked?'YES – please add me to the newsletter':'No'" style="flex: 1 1 440px; min-width: 0; background: #FFFFFF; border: 2px solid #1F2A44; border-radius: 6px; padding: 32px; display: flex; flex-direction: column; gap: 14px; scroll-margin-top: 16px">
       <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 26px; color: #B2472F">drop us a postcard</p>
       <h2 style="margin: 0 0 4px; font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 28px; text-transform: uppercase">Get in touch</h2>
       <label for="about-name" style="font-weight: 700; font-size: 15px">Your name</label>
-      <input id="about-name" type="text" style="font: inherit; padding: 12px; border: 2px solid #1F2A44; border-radius: 4px; background: #FBF8F2">
+      <input id="about-name" type="text" name="name" required autocomplete="name" style="font: inherit; padding: 12px; border: 2px solid #1F2A44; border-radius: 4px; background: #FBF8F2">
       <label for="about-email" style="font-weight: 700; font-size: 15px">Email</label>
-      <input id="about-email" type="email" style="font: inherit; padding: 12px; border: 2px solid #1F2A44; border-radius: 4px; background: #FBF8F2">
+      <input id="about-email" type="email" name="email" required autocomplete="email" style="font: inherit; padding: 12px; border: 2px solid #1F2A44; border-radius: 4px; background: #FBF8F2">
       <label for="about-msg" style="font-weight: 700; font-size: 15px">Message, or a place we should visit</label>
-      <textarea id="about-msg" rows="4" style="font: inherit; padding: 12px; border: 2px solid #1F2A44; border-radius: 4px; background: #FBF8F2; resize: vertical"></textarea>
-      <button type="button" style="align-self: flex-start; font: inherit; font-weight: 700; background: #B2472F; color: #FFFFFF; border: none; border-radius: 4px; padding: 14px 24px; box-shadow: 4px 4px 0 #1F2A44; cursor: pointer">Send</button>
+      <textarea id="about-msg" name="message" rows="4" required style="font: inherit; padding: 12px; border: 2px solid #1F2A44; border-radius: 4px; background: #FBF8F2; resize: vertical"></textarea>
+      <label style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.45; cursor: pointer">
+        <input id="about-news" type="checkbox" style="width: 20px; height: 20px; margin-top: 2px; accent-color: #B2472F; flex: none">
+        <span><strong>Please send me your free newsletter.</strong> New blogs, videos and travel tips. You can unsubscribe at any time.</span>
+      </label>
+      <input type="hidden" name="Newsletter" value="No">
+      <input type="hidden" name="access_key" value="0315765f-6e6c-4b5f-8711-ff977d4daa9c">
+      <input type="hidden" name="subject" value="New message from the About us page – Just Stay Away">
+      <input type="hidden" name="from_name" value="Just Stay Away website">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none">
+      <button type="submit" style="align-self: flex-start; font: inherit; font-weight: 700; background: #B2472F; color: #FFFFFF; border: none; border-radius: 4px; padding: 14px 24px; box-shadow: 4px 4px 0 #1F2A44; cursor: pointer">Send</button>
+      <p style="margin: 0; font-size: 13px; color: #2E3E57">We'll only use your details to reply to you and, if you tick the box, to send you our newsletter. See our <a href="privacy-policy.html">privacy policy</a>.</p>
     </form>
   </section>
 

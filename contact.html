@@ -33,7 +33,7 @@ a{color:#13325B}a:hover{color:#B2472F}
       <div style="display: flex; flex-wrap: wrap; gap: 4px 22px; font-weight: 700; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase">
         <a href="index.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Home</a>
         <a href="videos.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Videos</a>
-        <a href="travel.html" style="color: #13325B; text-decoration: none; padding: 10px 0; border-bottom: 3px solid #F4C542">Travel blogs</a>
+        <a href="travel.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Travel blogs</a>
         <a href="where-we-stay.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Where we stay</a>
         <a href="food.html" style="color: #13325B; text-decoration: none; padding: 10px 0">Food</a>
         <a href="about.html" style="color: #13325B; text-decoration: none; padding: 10px 0">About us</a>
@@ -41,19 +41,41 @@ a{color:#13325B}a:hover{color:#B2472F}
     </nav>
   </header>
 
-  <se  <section style="position: relative; padding: 16px 0 40px">
+  <section style="position: relative; padding: 16px 0 40px">
     <div aria-hidden="true" class="paper-banner" style="inset: 0 0 16px 0"></div>
     <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 56px 24px 52px; color: #13325B">
       <p style="margin: 0 0 14px; font-size: 14px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase"><a href="index.html" style="color: #B2472F; text-decoration: none">← Home</a> · Contact</p>
       <h1 style="margin: 0; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 56px; line-height: 1.05; transform: rotate(-1.5deg); transform-origin: left">CONTACT US</h1>
+      <p style="margin: 14px 0 0; font-size: 19px; max-width: 52ch">Questions, ideas or just want to say hello? We'd love to hear from you.</p>
     </div>
   </section>
 
   <article style="max-width: 760px; margin: 0 auto; padding: 40px 24px 24px; font-size: 18px; line-height: 1.75">
-    <p style="margin: 0 0 20px">[Contact form or email address to go here]</p>
+    <p style="margin: 0 0 24px">Got a question about a place we've visited, a suggestion for somewhere we should go, or just want to say hello? Drop us a message and we'll get back to you.</p>
+    <!-- Web3Forms: replace 0315765f-6e6c-4b5f-8711-ff977d4daa9c with the access key emailed to you by Web3Forms -->
+    <form action="https://api.web3forms.com/submit" method="POST" style="background: #FFFFFF; border-radius: 6px; padding: 28px; box-shadow: 0 8px 22px rgba(19,50,91,0.16); display: flex; flex-direction: column; gap: 18px">
+      <div>
+        <label for="c-name" style="display: block; margin: 0 0 6px; font-weight: 700; font-size: 15px">Your name</label>
+        <input id="c-name" type="text" name="name" required autocomplete="name" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 2px solid #13325B; border-radius: 4px; font: inherit; font-size: 16px; background: #FFFFFF; color: #13325B">
+      </div>
+      <div>
+        <label for="c-email" style="display: block; margin: 0 0 6px; font-weight: 700; font-size: 15px">Your email</label>
+        <input id="c-email" type="email" name="email" required autocomplete="email" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 2px solid #13325B; border-radius: 4px; font: inherit; font-size: 16px; background: #FFFFFF; color: #13325B">
+      </div>
+      <div>
+        <label for="c-message" style="display: block; margin: 0 0 6px; font-weight: 700; font-size: 15px">Your message</label>
+        <textarea id="c-message" name="message" rows="6" required style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 2px solid #13325B; border-radius: 4px; font: inherit; font-size: 16px; background: #FFFFFF; color: #13325B; resize: vertical"></textarea>
+      </div>
+      <input type="hidden" name="access_key" value="0315765f-6e6c-4b5f-8711-ff977d4daa9c">
+      <input type="hidden" name="subject" value="New message from the Just Stay Away website">
+      <input type="hidden" name="from_name" value="Just Stay Away website">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none">
+      <button type="submit" style="align-self: flex-start; background: #B2472F; color: #FFFFFF; border: none; border-radius: 4px; padding: 14px 26px; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer">Send message →</button>
+      <p style="margin: 0; font-size: 13px; color: #2E3E57">We'll only use your details to reply to you. See our <a href="privacy-policy.html">privacy policy</a>.</p>
+    </form>
   </article>
 
-ction style="max-width: 760px; margin: 0 auto; padding: 24px 24px 72px">
+  <section style="max-width: 760px; margin: 0 auto; padding: 24px 24px 72px">
     <p style="margin: 28px 0 0; text-align: center"><a href="index.html" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 14px">← Back to home</a></p>
   </section>
 
