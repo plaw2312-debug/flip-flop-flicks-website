@@ -10,6 +10,7 @@ img{max-width:100%}
 @media (max-width: 640px){
   h1{font-size:44px !important}
   h2{font-size:28px !important}
+  h2.lost-title{font-size:clamp(17px, 5.6vw, 27px) !important}
 }
 .paper-banner{position:absolute;inset:0 0 24px 0;border-style:solid;border-width:70px 60px;border-image:url('images/66d79fd1bbba2666c4d483e2ac97fa63.webp') 150 130 fill / 70px 60px stretch}
 @media (max-width: 640px){.paper-banner{border-width:40px 22px;border-image-width:40px 22px}}
@@ -90,7 +91,7 @@ a{color:#1F2A44}a:hover{color:#B2472F}
       <div style="flex: 2 1 320px; min-width: 0; background: #FFFFFF; border: 2px solid #1F2A44; border-radius: 6px; padding: 28px; box-shadow: 6px 6px 0 #1F2A44">
         <sc-if value="{{noPlace}}" hint-placeholder-val="{{true}}">
           <p style="margin: 0; font-family: 'Caveat', cursive; font-size: 26px; color: #B2472F">the full story</p>
-          <h2 style="margin: 2px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 27px; line-height: 1.1; white-space: nowrap; color: #13325B">PLACES TO GET LOST IN</h2>
+          <h2 class="lost-title" style="margin: 2px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: clamp(20px, 6.2vw, 27px); line-height: 1.1; white-space: nowrap; color: #13325B">PLACES TO GET LOST IN</h2>
           <!-- Blog list: keep in alphabetical order. Add a new line for each new blog post. -->
           <ul style="margin: 0; padding: 0; list-style: none; columns: 2 150px; column-gap: 24px">
             <li style="break-inside: avoid; margin: 0 0 12px; line-height: 1.35"><a href="blog-corfu-old-town.html" style="color: #13325B; font-weight: 700; text-decoration: none; border-bottom: 2px solid #F4C542">Corfu Old Town</a></li>
