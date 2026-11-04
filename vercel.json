@@ -1,13 +1,16 @@
 {
-  "headers": [
+  "redirects": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.juststayaway.com" }],
+      "destination": "https://juststayaway.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "flip-flop-flicks-website.vercel.app" }],
+      "destination": "https://juststayaway.com/:path*",
+      "permanent": true
     }
   ]
 }

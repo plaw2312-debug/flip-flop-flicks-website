@@ -6,7 +6,8 @@ A plain static website for Max and Jacquie's YouTube channel, Flip Flop Flicks
 ## How it goes live
 
 - This GitHub repository is linked to Vercel. Anything pushed to `main` goes
-  live at https://flip-flop-flicks-website.vercel.app within a minute or two.
+  live at https://juststayaway.com within a minute or two. The domain is
+  registered at names.co.uk; www and the old vercel.app address redirect to it.
 - Always pull the latest changes before editing, as two people work on it.
 - After pushing, check the live page loads and shows the change.
 
@@ -16,20 +17,22 @@ A plain static website for Max and Jacquie's YouTube channel, Flip Flop Flicks
 |---|---|
 | index.html | Home |
 | videos.html | Videos |
-| travel.html | Travel blogs |
-| blog-nafplio.html | Blog post: Nafplio |
-| where-we-stay.html | Where we stay |
+| travel.html | Travel blogs (blog-*.html are the posts) |
+| travel-tips.html | Travel tips (tips-*.html are the articles) |
+| where-we-stay.html | Where we stay (stay-*.html are the reviews) |
 | food.html | Food |
 | about.html | About us |
+| contact.html | Contact |
+| privacy-policy.html | Privacy policy |
 
 Images live in `images/`. `dc-lite.js` fills in the video and travel lists on
 videos.html and travel.html; do not remove it.
 
 ## Rules
 
-- **Keep the site hidden from Google** until Philippa says otherwise. Every page
-  needs `<meta name="robots" content="noindex, nofollow">`, and do not change
-  `vercel.json` or `robots.txt`.
+- The site is public and open to Google. Do not add `noindex` tags, and leave
+  `vercel.json` and `robots.txt` alone.
+- When adding or removing a page, add or remove its line in `sitemap.xml`.
 - The header, footer and blue jagged banner are the same on every page. Change
   one, change them all.
 - Square-bracket text such as `[Dish and place]` is a placeholder waiting for
