@@ -122,6 +122,7 @@ a{color:#13325B}a:hover{color:#B2472F}
         <li><label><input type="checkbox"><span>Write down the <em>one</em> experience that would make this trip for you.</span></label></li>
       </ul>
     </div>
+    <p id="tick-note" class="noprint" hidden style="margin: -12px 0 28px; font-size: 15px; color: #2E3E57">Your ticks are saved on this device, so they'll still be here when you come back. <button type="button" id="tick-clear" style="font: inherit; font-weight: 700; color: #13325B; background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer">Clear my ticks</button></p>
     <h2 style="margin: 56px 0 6px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15; scroll-margin-top: 20px">THE COUNTDOWN AT A GLANCE</h2>
     <p style="margin: 0 0 20px">Find where you are on the line, then jump straight to that stage:</p>
     <nav class="tl" aria-label="Countdown stages">
@@ -378,5 +379,33 @@ a{color:#13325B}a:hover{color:#B2472F}
   </footer>
 </div>
 
+<script>
+/* Remembers which boxes a reader has ticked, in their own browser only (localStorage). Nothing is sent anywhere. */
+(function(){
+  var KEY='jsa-trip-planner-ticks', store=null;
+  try{ store=window.localStorage; var t='__jsa'; store.setItem(t,t); store.removeItem(t); }catch(e){ store=null; }
+  var boxes=document.querySelectorAll('.chk input[type=checkbox]');
+  function keyFor(cb){ var l=cb.closest('label'); return (l?l.textContent:'').replace(/\s+/g,' ').trim().slice(0,80); }
+  var saved={};
+  if(store){ try{ saved=JSON.parse(store.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; } }
+  boxes.forEach(function(cb){
+    var k=keyFor(cb);
+    if(saved[k]) cb.checked=true;
+    cb.addEventListener('change',function(){
+      if(!store) return;
+      if(cb.checked) saved[k]=1; else delete saved[k];
+      try{ store.setItem(KEY,JSON.stringify(saved)); }catch(e){}
+    });
+  });
+  if(store){
+    var note=document.getElementById('tick-note'); if(note) note.hidden=false;
+    var btn=document.getElementById('tick-clear');
+    if(btn) btn.addEventListener('click',function(){
+      saved={}; try{ store.removeItem(KEY); }catch(e){}
+      boxes.forEach(function(cb){ cb.checked=false; });
+    });
+  }
+})();
+</script>
 </body>
 </html>
