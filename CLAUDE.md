@@ -49,4 +49,6 @@ videos.html and travel.html; do not remove it.
 - Email sign-up: the Kit form "Greece trip planner sign-up" is embedded with
   `<script async data-uid="e681643c9e" ...>` just above the footer on the home
   page, travel-tips.html, travel-resources.html and every blog-*/tips-* page.
+  On tips-trip-planner.html it sits under the wish-list download, before
+  "8 weeks out", instead.
   Use it once per page only. New blog posts get it by copying blog-nafplio.html.
