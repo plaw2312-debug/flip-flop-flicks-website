@@ -79,6 +79,26 @@ img{max-width:100%}
 .kit-box .formkit-input{padding:9px 12px !important}
 .kit-box .formkit-field,.kit-box .formkit-submit,.kit-box .formkit-guarantee{margin-bottom:8px !important}
 .kit-box .formkit-guarantee{font-size:12px !important}
+.bp{margin:8px 0 32px;background:#FFFFFF;border-radius:8px;padding:22px 22px 18px;box-shadow:0 6px 18px rgba(19,50,91,.12)}
+.bp-top{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 14px;font-size:15px}
+.bp-top label{font-weight:700}
+.bp-top input,.bp-top select{font:inherit;font-size:15px;width:64px;padding:6px 8px;border:2px solid #13325B;border-radius:4px;color:#13325B;background:#FFFFFF}
+.bp-top select{width:auto}
+.bp table{width:100%;border-collapse:collapse;font-size:15px}
+.bp th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#2E3E57;padding:0 6px 6px;border-bottom:2px solid #13325B}
+.bp th.n,.bp td.n{text-align:right}
+.bp td{padding:6px;border-bottom:1px solid #E5D9C3;vertical-align:middle;line-height:1.35}
+.bp td small{display:block;font-size:12px;color:#5A6B80}
+.bp td small a{color:#B2472F}
+.bp input.m{font:inherit;font-size:15px;width:88px;padding:6px 8px;border:1px solid #9AA7B8;border-radius:4px;text-align:right;color:#13325B}
+.bp tfoot td{font-weight:700;border-bottom:0;padding-top:10px}
+.bp-bar{height:12px;background:#EFE6D4;border-radius:99px;overflow:hidden;margin:14px 0 6px}
+.bp-bar span{display:block;height:100%;width:0;background:#2C6FB7;transition:width .3s}
+.bp-bar.over span{background:#B2472F}
+.bp-sum{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:15px;margin:0}
+.bp-sum b{color:#13325B}
+@media (max-width:560px){.bp{padding:18px 12px}.bp td,.bp th{padding-left:3px;padding-right:3px}.bp input.m{width:70px;padding:6px 5px}.bp td small{display:none}}
+@media print{.bp{box-shadow:none;border:1px solid #13325B}.bp input{border:0}}
 @media print{header,footer,.noprint{display:none !important}.paper-banner{display:none}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -190,7 +210,7 @@ a{color:#13325B}a:hover{color:#B2472F}
       <li><strong>Why this trip?</strong> Rest, adventure, food, history, family time? Your answer shapes everything else.</li>
       <li><strong>Islands or mainland, or both?</strong> One base with day trips is relaxing; hopping between places packs in more but costs more time in transit.</li>
       <li><strong>Who's coming?</strong> Toddlers, teenagers and grandparents all travel differently.</li>
-      <li><strong>How much can you spend?</strong> Set the total first, then split it across flights, stays, food, activities and a little for shopping.</li>
+      <li><strong>How much can you spend?</strong> Set the total first, then split it across flights, stays, food, activities and a little for shopping. Our <a href="#budget">budget planner</a> below does the sums for you.</li>
     </ul>
     <p style="margin: 0 0 10px; font-weight: 700">Then tick these off:</p>
     <ul class="chk">
@@ -200,6 +220,23 @@ a{color:#13325B}a:hover{color:#B2472F}
       <li><label><input type="checkbox"><span>Check visa and entry requirements for each traveller's nationality. UK travellers: check GOV.UK's Greece travel advice for the latest, including the new EES fingerprint and photo checks at the border.</span></label></li>
       <li><label><input type="checkbox"><span>Ask your GP or a travel clinic whether you need any vaccinations or medication.</span></label></li>
     </ul>
+    <div id="budget" class="bp" style="scroll-margin-top: 20px">
+      <p style="margin: 0 0 4px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: #B2472F">your trip budget</p>
+      <p style="margin: 0 0 14px; font-size: 16px; line-height: 1.6">Fill in what you plan to spend on each part of the trip, then add what it really cost as you book. We'll keep the totals and show how much you have left.</p>
+      <div class="bp-top">
+        <span><label for="bp-people">Travellers</label> <input type="number" id="bp-people" min="1" max="20" value="2"></span>
+        <span><label for="bp-nights">Nights</label> <input type="number" id="bp-nights" min="1" max="90" value="10"></span>
+        <span><label for="bp-cur">Currency</label> <select id="bp-cur"><option value="£">£ pounds</option><option value="€">€ euros</option><option value="$">$ dollars</option></select></span>
+      </div>
+      <table>
+        <thead><tr><th>What</th><th class="n">Plan</th><th class="n">Booked / spent</th></tr></thead>
+        <tbody id="bp-rows"></tbody>
+        <tfoot><tr><td>Total</td><td class="n" id="bp-tp"></td><td class="n" id="bp-ts"></td></tr></tfoot>
+      </table>
+      <div class="bp-bar" id="bp-bar" role="progressbar" aria-label="Share of your budget used" aria-valuemin="0" aria-valuemax="100"><span></span></div>
+      <p class="bp-sum" id="bp-sum"></p>
+      <p class="noprint" style="margin: 12px 0 0; font-size: 14px; color: #5A6B80">Saved on this device only. <button type="button" id="bp-clear" style="font: inherit; font-weight: 700; color: #13325B; background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer">Clear my budget</button></p>
+    </div>
     <aside style="margin: 8px 0 28px; background: #B2472F; color: #FFFFFF; border-radius: 6px; padding: 22px 26px">
       <p style="margin: 0 0 4px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 26px; color: #F4C542">local tip</p>
       <p style="margin: 0">Don't try to see all of Greece in one go. Two or three places, properly enjoyed, beat six places glimpsed from a ferry deck.</p>
@@ -542,6 +579,65 @@ a{color:#13325B}a:hover{color:#B2472F}
   document.getElementById('cd-reset').addEventListener('click',function(){
     input.value=''; show(''); if(store){ try{ store.removeItem(KEY); }catch(e){} }
   });
+})();
+</script>
+<script>
+/* Budget planner. Figures are kept in the reader's own browser only (localStorage). Nothing is sent anywhere. */
+(function(){
+  var KEY='jsa-trip-budget', store=null;
+  try{ store=window.localStorage; var t='__jsa'; store.setItem(t,t); store.removeItem(t); }catch(e){ store=null; }
+  var tbody=document.getElementById('bp-rows'); if(!tbody) return;
+  var ROWS=[
+    ['flights','Flights','Check what luggage is included before you pay.'],
+    ['stay','Places to stay','See <a href="where-we-stay.html">where we stay</a>.'],
+    ['car','Car hire and fuel','We use <a href="https://www.discovercars.com/?a_aid=juststayaway" target="_blank" rel="sponsored noopener">Discover Cars</a>.'],
+    ['ferry','Ferries','Compare in our <a href="travel-resources.html#ferries">travel toolkit</a>.'],
+    ['food','Food and drink','Tavernas, coffees, picnics.'],
+    ['tours','Tours and entry fees','See our <a href="travel-resources.html#tours">favourite tours</a>.'],
+    ['ins','Travel and car-hire insurance','See <a href="travel-resources.html#insurance">who we use</a>.'],
+    ['extra','Shopping and extras','Souvenirs, parking, tips.']
+  ];
+  var people=document.getElementById('bp-people'), nights=document.getElementById('bp-nights'), cur=document.getElementById('bp-cur');
+  var data={people:2,nights:10,cur:'\u00a3',plan:{},spent:{}};
+  if(store){ try{ var s=JSON.parse(store.getItem(KEY)||'null'); if(s) data=Object.assign(data,s); }catch(e){} }
+  ROWS.forEach(function(r){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+r[1]+'<small>'+r[2]+'</small></td>'+
+      '<td class="n"><input class="m" inputmode="decimal" data-k="plan" data-id="'+r[0]+'" aria-label="'+r[1]+' plan" placeholder="0"></td>'+
+      '<td class="n"><input class="m" inputmode="decimal" data-k="spent" data-id="'+r[0]+'" aria-label="'+r[1]+' booked or spent" placeholder="0"></td>';
+    tbody.appendChild(tr);
+  });
+  var inputs=tbody.querySelectorAll('input.m');
+  function num(v){ var n=parseFloat(String(v||'').replace(/[^0-9.]/g,'')); return isFinite(n)?n:0; }
+  function money(n){ return data.cur+Math.round(n).toLocaleString('en-GB'); }
+  function save(){ if(store){ try{ store.setItem(KEY,JSON.stringify(data)); }catch(e){} } }
+  function render(){
+    var tp=0, ts=0;
+    ROWS.forEach(function(r){ tp+=num(data.plan[r[0]]); ts+=num(data.spent[r[0]]); });
+    document.getElementById('bp-tp').textContent=money(tp);
+    document.getElementById('bp-ts').textContent=money(ts);
+    var pct=tp>0?Math.round(ts/tp*100):0, bar=document.getElementById('bp-bar');
+    bar.querySelector('span').style.width=Math.min(pct,100)+'%';
+    bar.classList.toggle('over',tp>0&&ts>tp); bar.setAttribute('aria-valuenow',Math.min(pct,100));
+    var p=Math.max(1,num(data.people)), n=Math.max(1,num(data.nights)), left=tp-ts, out=[];
+    if(tp>0){
+      out.push('<span>'+(left>=0?'Left to spend: <b>'+money(left)+'</b>':'Over budget by <b style="color:#B2472F">'+money(-left)+'</b>')+'</span>');
+      out.push('<span>Per person: <b>'+money(tp/p)+'</b></span>');
+      out.push('<span>Per night: <b>'+money(tp/n)+'</b></span>');
+      out.push('<span>'+pct+'% booked or spent</span>');
+    } else out.push('<span>Add your plan figures to see your totals.</span>');
+    document.getElementById('bp-sum').innerHTML=out.join('');
+  }
+  people.value=data.people; nights.value=data.nights; cur.value=data.cur;
+  inputs.forEach(function(i){ var v=data[i.dataset.k][i.dataset.id]; if(v) i.value=v;
+    i.addEventListener('input',function(){ data[i.dataset.k][i.dataset.id]=i.value; render(); save(); }); });
+  [people,nights,cur].forEach(function(el){ el.addEventListener('input',function(){ data.people=people.value; data.nights=nights.value; data.cur=cur.value; render(); save(); }); });
+  document.getElementById('bp-clear').addEventListener('click',function(){
+    data={people:2,nights:10,cur:'\u00a3',plan:{},spent:{}};
+    people.value=2; nights.value=10; cur.value='\u00a3'; inputs.forEach(function(i){ i.value=''; });
+    if(store){ try{ store.removeItem(KEY); }catch(e){} } render();
+  });
+  render();
 })();
 </script>
 </body>
