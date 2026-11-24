@@ -46,3 +46,7 @@ videos.html and travel.html; do not remove it.
   terracotta #B2472F, YouTube red #D62C2C.
 - Fonts: Archivo and Archivo Black, Caveat for handwritten notes, Permanent
   Marker for stamps.
+- Email sign-up: the Kit form "Greece trip planner sign-up" is embedded with
+  `<script async data-uid="e681643c9e" ...>` just above the footer on the home
+  page, travel-tips.html, travel-resources.html and every blog-*/tips-* page.
+  Use it once per page only. New blog posts get it by copying blog-nafplio.html.
