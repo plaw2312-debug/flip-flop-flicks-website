@@ -55,4 +55,5 @@ videos.html and travel.html; do not remove it.
 - Discover Cars affiliate link (use this one on the site):
   `https://www.discovercars.com/uk/greece?a_aid=juststayaway&currency=gbp`
   The DiscoverCars search widget is on tips-car-hire.html (under "How we found
-  Auto Union"); its `data-aff-code` must be `juststayaway`.
+  Auto Union"); it needs `data-aff-code="a_aid"` and
+  `data-aff-value="juststayaway"`.
