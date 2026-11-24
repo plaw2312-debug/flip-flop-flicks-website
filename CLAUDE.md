@@ -52,3 +52,5 @@ videos.html and travel.html; do not remove it.
   On tips-trip-planner.html it sits under the wish-list download, before
   "8 weeks out", instead.
   Use it once per page only. New blog posts get it by copying blog-nafplio.html.
+- Discover Cars affiliate link (use this one on the site):
+  `https://www.discovercars.com/uk/greece?a_aid=juststayaway&currency=gbp`
