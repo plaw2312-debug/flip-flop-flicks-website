@@ -19,6 +19,7 @@ A plain static website for Max and Jacquie's YouTube channel, Flip Flop Flicks
 | videos.html | Videos |
 | travel.html | Travel blogs (blog-*.html are the posts) |
 | travel-tips.html | Travel tips (tips-*.html are the articles) |
+| travel-resources.html | Travel toolkit: every booking site we use, by category, with affiliate links |
 | where-we-stay.html | Where we stay (stay-*.html are the reviews) |
 | food.html | Food |
 | about.html | About us |
