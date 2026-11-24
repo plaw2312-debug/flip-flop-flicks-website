@@ -36,6 +36,20 @@ img{max-width:100%}
   h1{font-size:44px !important}
   h2{font-size:28px !important}
 }
+.bf{margin:12px 0 36px;background:#FFFFFF;border:3px dashed #13325B;border-radius:8px;padding:24px 26px}
+.bf fieldset{border:0;padding:0;margin:0 0 18px}
+.bf legend{font-weight:700;font-size:17px;margin-bottom:8px;padding:0}
+.bf .opts{display:flex;flex-wrap:wrap;gap:8px}
+.bf .opts label{cursor:pointer}
+.bf .opts input{position:absolute;opacity:0;pointer-events:none}
+.bf .opts span{display:inline-block;border:2px solid #13325B;border-radius:999px;padding:7px 14px;font-size:15px;font-weight:500;background:#FFFFFF;color:#13325B}
+.bf .opts input:checked + span{background:#13325B;color:#FFFFFF}
+.bf .opts input:focus-visible + span{outline:3px solid #F4C542;outline-offset:2px}
+.bf button{font:inherit;font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:0;border-radius:4px;padding:13px 22px;background:#B2472F;color:#FFFFFF;cursor:pointer}
+.bf-stop{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-top:1px solid #E5D9C3}
+.bf-stop b{flex:0 0 44px;height:44px;border-radius:50%;background:#F4C542;color:#13325B;display:flex;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-weight:400;font-size:16px}
+.bf-stop p{margin:0;font-size:16px;line-height:1.6}
+@media print{.noprint{display:none !important}}
 .paper-banner{position:absolute;inset:0 0 24px 0;border-style:solid;border-width:70px 60px;border-image:url('images/66d79fd1bbba2666c4d483e2ac97fa63.webp') 150 130 fill / 70px 60px stretch}
 @media (max-width: 640px){.paper-banner{border-width:40px 22px;border-image-width:40px 22px}}
 </style>
@@ -107,12 +121,44 @@ a{color:#13325B}a:hover{color:#B2472F}
       <p style="margin: 0">We choose a base with enough interesting places to keep us occupied for three to five days. We explore the surrounding area, enjoy a few beaches, discover some villages, find a decent taverna or two and then move on to our next location.</p>
     </aside>
     <p style="margin: 0 0 20px">It's a much more enjoyable way to travel. Less time driving backwards and forwards, more time actually enjoying Greece.</p>
+    <div id="base-finder" class="bf noprint" style="scroll-margin-top: 20px">
+      <p style="margin: 0 0 4px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 30px; color: #B2472F">our base finder</p>
+      <p style="margin: 0 0 18px; font-size: 16px; line-height: 1.6">Not sure which areas to pick? Answer four quick questions and we'll suggest a route of bases, using the same three-to-five-nights approach we use ourselves.</p>
+      <form id="bf-form">
+        <fieldset><legend>1. Where are you flying into?</legend><div class="opts">
+          <label><input type="radio" name="fly" value="ath" checked><span>Athens</span></label>
+          <label><input type="radio" name="fly" value="klx"><span>Kalamata</span></label>
+          <label><input type="radio" name="fly" value="any"><span>Not sure yet</span></label>
+        </div></fieldset>
+        <fieldset><legend>2. How many nights have you got?</legend><div class="opts">
+          <label><input type="radio" name="nights" value="7"><span>7</span></label>
+          <label><input type="radio" name="nights" value="10" checked><span>10</span></label>
+          <label><input type="radio" name="nights" value="14"><span>14</span></label>
+          <label><input type="radio" name="nights" value="21"><span>21</span></label>
+        </div></fieldset>
+        <fieldset><legend>3. What do you love? Pick as many as you like.</legend><div class="opts">
+          <label><input type="checkbox" name="like" value="history"><span>Ancient sites and castles</span></label>
+          <label><input type="checkbox" name="like" value="beach"><span>Beaches</span></label>
+          <label><input type="checkbox" name="like" value="town"><span>Pretty harbour towns</span></label>
+          <label><input type="checkbox" name="like" value="island"><span>Island day trips</span></label>
+          <label><input type="checkbox" name="like" value="wild"><span>Wild scenery and walks</span></label>
+          <label><input type="checkbox" name="like" value="quiet"><span>Quiet, away from the crowds</span></label>
+          <label><input type="checkbox" name="like" value="city"><span>City life, museums and food</span></label>
+        </div></fieldset>
+        <fieldset><legend>4. Happy driving winding mountain roads?</legend><div class="opts">
+          <label><input type="radio" name="roads" value="yes" checked><span>Bring them on</span></label>
+          <label><input type="radio" name="roads" value="no"><span>I'd rather not</span></label>
+        </div></fieldset>
+        <button type="submit">Suggest my route</button>
+      </form>
+      <div id="bf-out" hidden style="margin-top: 22px" aria-live="polite"></div>
+    </div>
     <p style="margin: 0 0 20px">So, let's look at the seven areas on our map.</p>
     <figure style="margin: 8px auto 28px; max-width: 85%; min-width: 260px; background: #FFFFFF; padding: 10px 10px 40px; box-shadow: 0 10px 24px rgba(19,50,91,0.18); transform: rotate(-0.5deg)">
       <img src="images/35c66fb13bce5f80eab2501591c00cdc.jpg" alt="Map of the Peloponnese showing our seven areas" style="width: 100%; height: auto; display: block">
       <figcaption style="margin-top: 8px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px; text-align: center">Our six areas of the Peloponnese plus Athens</figcaption>
     </figure>
-    <h2 style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15">AREA 1 – NAFPLIO AND THE ARGOLIS PENINSULA</h2>
+    <h2 id="area-1" style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15; scroll-margin-top: 20px">AREA 1 – NAFPLIO AND THE ARGOLIS PENINSULA</h2>
     <p style="margin: 0 0 20px">If you're starting your Peloponnese adventure in Athens, this is an excellent place to begin.</p>
     <p style="margin: 0 0 20px">Base yourself in or around Nafplio and you'll have a wonderful mixture of history, beautiful towns, beaches and traditional Greek life right on your doorstep.</p>
     <p style="margin: 0 0 20px">Nafplio itself is one of our favourite towns in Greece. With its Venetian architecture, attractive waterfront, narrow streets and rather impressive Palamidi Fortress overlooking everything, it's somewhere you could happily spend a couple of days just wandering around.</p>
@@ -122,7 +168,7 @@ a{color:#13325B}a:hover{color:#B2472F}
     <p style="margin: 0 0 20px">And when you've had enough ancient stones to last you a lifetime, there's always Karathona Beach. A beautiful stretch of sand just outside Nafplio, perfect for a lazy day beside the sea.</p>
     <p style="margin: 0 0 20px">Three to five days here will give you a good introduction to the Peloponnese without feeling as though you're spending your entire holiday in a hire car.</p>
     <p style="margin: 4px 0 20px; padding: 12px 16px; background: #FFFFFF; border-left: 4px solid #F4C542; border-radius: 4px; font-size: 16px">Read our blogs: <a href="blog-nafplio.html" style="font-weight: 700">Nafplio</a></p>
-    <h2 style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15">AREA 2 – METHONI AND THE MESSINIAN COAST</h2>
+    <h2 id="area-2" style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15; scroll-margin-top: 20px">AREA 2 – METHONI AND THE MESSINIAN COAST</h2>
     <p style="margin: 0 0 20px">Now we're getting somewhere.</p>
     <p style="margin: 0 0 20px">Methoni makes a fantastic base for exploring the south-western corner of the Peloponnese. It's a lovely little seaside town with a relaxed atmosphere, a beautiful beach and one of the most impressive Venetian castles in Greece.</p>
     <p style="margin: 0 0 20px">And the really good news is that you're surrounded by places worth visiting, most of them within roughly 30 minutes of your accommodation.</p>
@@ -134,7 +180,7 @@ a{color:#13325B}a:hover{color:#B2472F}
     <p style="margin: 0 0 20px">The beauty of staying around Methoni is that you can explore somewhere different every day and still be back in time for an evening drink overlooking the sea.</p>
     <p style="margin: 0 0 20px">This is exactly the sort of area where our three-to-five-day base system works brilliantly.</p>
     <p style="margin: 4px 0 20px; padding: 12px 16px; background: #FFFFFF; border-left: 4px solid #F4C542; border-radius: 4px; font-size: 16px">Read our blogs: <a href="blog-methoni.html" style="font-weight: 700">Methoni</a> · <a href="blog-finikounda.html" style="font-weight: 700">Finikounda</a> · <a href="blog-koroni.html" style="font-weight: 700">Koroni</a> · <a href="blog-pylos.html" style="font-weight: 700">Pylos</a> · <a href="blog-voidokilia.html" style="font-weight: 700">Voidokilia Beach</a></p>
-    <h2 style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15">AREA 3 – THE MANI PENINSULA</h2>
+    <h2 id="area-3" style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15; scroll-margin-top: 20px">AREA 3 – THE MANI PENINSULA</h2>
     <p style="margin: 0 0 20px">If Greece had a personality test, Mani would probably refuse to fill it in.</p>
     <p style="margin: 0 0 20px">This is a wonderfully rugged part of the Peloponnese, with dramatic mountains, stone villages, beautiful coastal scenery and a history that is every bit as fascinating as the landscape.</p>
     <p style="margin: 0 0 20px">It's also an area where you need to allow yourself time. The roads can be winding, and distances that look quite manageable on a map can take considerably longer than you might expect.</p>
@@ -145,7 +191,7 @@ a{color:#13325B}a:hover{color:#B2472F}
     <p style="margin: 0 0 20px">Nearby is Agios Nikolaos, a pretty little fishing village, and Kardamyli, with its stone houses, beautiful setting and spectacular mountain backdrop.</p>
     <p style="margin: 0 0 20px">You could easily spend five days exploring this area, and still find yourself wishing you'd booked another week.</p>
     <p style="margin: 4px 0 20px; padding: 12px 16px; background: #FFFFFF; border-left: 4px solid #F4C542; border-radius: 4px; font-size: 16px">Read our blogs: <a href="blog-gythio.html" style="font-weight: 700">Gythio</a></p>
-    <h2 style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15">AREA 4 – DEEP SOUTH MANI: THE END OF THE ROAD</h2>
+    <h2 id="area-4" style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15; scroll-margin-top: 20px">AREA 4 – DEEP SOUTH MANI: THE END OF THE ROAD</h2>
     <p style="margin: 0 0 20px">If Area 3 is rugged, Area 4 takes things to another level.</p>
     <p style="margin: 0 0 20px">This is the southernmost part of the Mani Peninsula, where the landscape becomes increasingly dramatic and the villages seem to have been built to withstand just about anything nature can throw at them.</p>
     <p style="margin: 0 0 20px">It's also somewhere that feels wonderfully remote.</p>
@@ -155,7 +201,7 @@ a{color:#13325B}a:hover{color:#B2472F}
     <p style="margin: 0 0 20px">It's a spectacular spot and well worth the effort if you enjoy a good walk.</p>
     <p style="margin: 0 0 20px">And don't miss Gerolimenas, a charming seaside village tucked beneath a dramatic cliffside backdrop. Its waterfront tavernas serve traditional Maniot food, and it's a wonderful place to stop for lunch and watch the world go by.</p>
     <p style="margin: 0 0 20px">This isn't somewhere we'd necessarily choose for a long list of day trips. It's more about enjoying the remoteness, exploring the dramatic landscape and discovering one of the most distinctive corners of Greece.</p>
-    <h2 style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15">AREA 5 – NEAPOLI, VIGKLAFIA AND ELAFONISOS</h2>
+    <h2 id="area-5" style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15; scroll-margin-top: 20px">AREA 5 – NEAPOLI, VIGKLAFIA AND ELAFONISOS</h2>
     <p style="margin: 0 0 20px">Sometimes you reach a part of Greece and feel as though you've arrived at the end of the world.</p>
     <p style="margin: 0 0 20px">Area 5 is a little bit like that.</p>
     <p style="margin: 0 0 20px">The south-eastern corner of the Peloponnese is quieter, more remote and perhaps a little less explored than some of the better-known destinations.</p>
@@ -174,7 +220,7 @@ a{color:#13325B}a:hover{color:#B2472F}
       <p style="margin: 0">Just remember to check ferry timetables, particularly if you're travelling outside the main summer season.</p>
     </aside>
     <p style="margin: 4px 0 20px; padding: 12px 16px; background: #FFFFFF; border-left: 4px solid #F4C542; border-radius: 4px; font-size: 16px">Read our blogs: <a href="blog-vigklafia.html" style="font-weight: 700">Vigklafia &amp; Elafonisos</a></p>
-    <h2 style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15">AREA 6 – ERMIONI, PORTO HELI AND THE SARONIC ISLANDS</h2>
+    <h2 id="area-6" style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15; scroll-margin-top: 20px">AREA 6 – ERMIONI, PORTO HELI AND THE SARONIC ISLANDS</h2>
     <p style="margin: 0 0 20px">Area 6 is a particularly good choice if you want to combine mainland Greece with a bit of island hopping.</p>
     <p style="margin: 0 0 20px">Using Ermioni as your base puts you within easy reach of several lovely coastal destinations, including Porto Heli, with its attractive harbour, waterfront restaurants and rather smart holiday atmosphere.</p>
     <p style="margin: 0 0 20px">But the real attraction here is the islands.</p>
@@ -184,7 +230,7 @@ a{color:#13325B}a:hover{color:#B2472F}
     <p style="margin: 0 0 20px">All three islands are worth visiting, although you'll need to plan your ferry journeys carefully depending on where you're staying and which island you want to explore.</p>
     <p style="margin: 0 0 20px">Ermioni is a lovely base for this part of the Peloponnese, giving you the opportunity to enjoy the mainland while having some of Greece's most attractive islands within reach.</p>
     <p style="margin: 4px 0 20px; padding: 12px 16px; background: #FFFFFF; border-left: 4px solid #F4C542; border-radius: 4px; font-size: 16px">Read our blogs: <a href="blog-ermioni.html" style="font-weight: 700">Ermioni</a> · <a href="blog-poros.html" style="font-weight: 700">Poros</a></p>
-    <h2 style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15">AREA 7 – ATHENS AND THE CORINTH CANAL</h2>
+    <h2 id="area-7" style="margin: 48px 0 16px; font-family: 'Permanent Marker', cursive; font-weight: 400; font-size: 32px; line-height: 1.15; scroll-margin-top: 20px">AREA 7 – ATHENS AND THE CORINTH CANAL</h2>
     <p style="margin: 0 0 20px">Well, Athens is Athens.</p>
     <p style="margin: 0 0 20px">You can't really come to Greece without spending some time in its capital. History seems to be hiding around every corner, from the magnificent Acropolis and Parthenon to the ancient Agora and the winding streets of Plaka.</p>
     <p style="margin: 0 0 20px">It's a city where you can spend days exploring archaeological sites, museums, rooftop bars and traditional neighbourhoods.</p>
@@ -258,5 +304,66 @@ a{color:#13325B}a:hover{color:#B2472F}
   </footer>
 </div>
 
+<script>
+/* Base finder: suggests a route from the seven areas on this page. Runs in the browser; nothing is sent or stored. */
+(function(){
+  var form=document.getElementById('bf-form'), out=document.getElementById('bf-out');
+  if(!form||!out) return;
+  var A={
+    1:{name:'Nafplio and the Argolis',sec:'area-1',score:{history:3,beach:2,town:3,island:0,wild:0,quiet:0,city:1},
+       see:'Nafplio old town and Palamidi Fortress, Mycenae, Epidaurus, Tolo and Karathona Beach',blogs:[['blog-nafplio.html','Nafplio'],['blog-tolo.html','Tolo']]},
+    2:{name:'Methoni and the Messinian coast',sec:'area-2',score:{history:2,beach:3,town:3,island:0,wild:1,quiet:1,city:0},
+       see:'Methoni Castle, Finikounda, Koroni, Pylos and Voidokilia Beach',blogs:[['blog-methoni.html','Methoni'],['blog-pylos.html','Pylos'],['blog-voidokilia.html','Voidokilia']]},
+    3:{name:'The Mani Peninsula',sec:'area-3',roads:2,score:{history:1,beach:2,town:3,island:0,wild:3,quiet:2,city:0},
+       see:'Gythio, Limeni, Oitylo, Stoupa, Agios Nikolaos and Kardamyli',blogs:[['blog-gythio.html','Gythio'],['blog-limeni.html','Limeni'],['blog-stoupa-kardamyli.html','Stoupa and Kardamyli']]},
+    4:{name:'Deep south Mani',sec:'area-4',roads:4,score:{history:2,beach:0,town:1,island:0,wild:3,quiet:3,city:0},
+       see:'the tower village of Vathia, the Diros Caves, the walk to Cape Tainaron and Gerolimenas',blogs:[]},
+    5:{name:'Neapoli, Vigklafia and Elafonisos',sec:'area-5',score:{history:1,beach:3,town:1,island:2,wild:1,quiet:3,city:0},
+       see:'Simos Beach on Elafonisos, sunken Pavlopetri and a day on Kythira',blogs:[['blog-vigklafia.html','Vigklafia and Elafonisos']]},
+    6:{name:'Ermioni, Porto Heli and the Saronic islands',sec:'area-6',score:{history:0,beach:2,town:2,island:3,wild:0,quiet:1,city:0},
+       see:'Porto Heli, and day trips to Poros, Hydra and Spetses',blogs:[['blog-ermioni.html','Ermioni'],['blog-porto-cheli.html','Porto Heli'],['blog-poros.html','Poros']]},
+    7:{name:'Athens and the Corinth Canal',sec:'area-7',score:{history:3,beach:1,town:0,island:0,wild:0,quiet:0,city:3},
+       see:'the Acropolis, Plaka, the Athens Riviera and the Corinth Canal on the way south',blogs:[['blog-athens.html','Athens']]}
+  };
+  var ORDER=[7,1,6,5,4,3,2];
+  var LABEL={history:'ancient sites',beach:'beaches',town:'harbour towns',island:'island trips',wild:'wild scenery',quiet:'peace and quiet',city:'city life'};
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var fd=new FormData(form), likes=fd.getAll('like'), fly=fd.get('fly'), nights=+fd.get('nights'), noRoads=fd.get('roads')==='no';
+    if(!likes.length){ out.hidden=false; out.innerHTML='<p style="margin:0;font-weight:700;color:#B2472F">Pick at least one thing you love in question 3, and we\u2019ll do the rest.</p>'; return; }
+    function score(n){ var s=0; likes.forEach(function(l){ s+=A[n].score[l]; }); if(noRoads&&A[n].roads) s-=A[n].roads; return s; }
+    var withAthens=fly!=='klx' && (nights>=10 || likes.indexOf('city')>=0 || likes.indexOf('history')>=0);
+    var athNights=withAthens?2:0, rest=nights-athNights, k=Math.max(1,Math.min(6,Math.round(rest/4)));
+    var pool=ORDER.filter(function(n){ return n!==7; }).sort(function(a,b){ return score(b)-score(a); });
+    var picked=pool.slice(0,k).filter(function(n,i){ return i===0||score(n)>0; });
+    k=picked.length;
+    var per={}, base=Math.floor(rest/k), extra=rest-base*k;
+    picked.forEach(function(n,i){ per[n]=base+(i<extra?1:0); });
+    if(withAthens){ picked.push(7); per[7]=athNights; }
+    var order=fly==='klx'?ORDER.slice().reverse():ORDER;
+    var route=order.filter(function(n){ return picked.indexOf(n)>=0; });
+    var html='<p style="margin:0 0 4px;font-family:\'Permanent Marker\',cursive;font-size:26px;color:#13325B">YOUR '+nights+'-NIGHT ROUTE</p>';
+    route.forEach(function(n,i){
+      var a=A[n], good=likes.filter(function(l){ return a.score[l]>=2; }).map(function(l){ return LABEL[l]; });
+      var blogs=a.blogs.map(function(b){ return '<a href="'+b[0]+'">'+b[1]+'</a>'; }).join(' \u00b7 ');
+      html+='<div class="bf-stop"><b>'+(i+1)+'</b><div><p><strong>'+a.name+'</strong>: '+per[n]+' night'+(per[n]>1?'s':'')+'</p>'+
+        '<p>'+(good.length?'Great for '+good.join(', ')+'. ':'')+'Don\u2019t miss '+a.see+'.</p>'+
+        '<p style="font-size:15px"><a href="#'+a.sec+'">Read about this area</a>'+(blogs?' \u00b7 Our blogs: '+blogs:'')+'</p></div></div>';
+    });
+    var notes=[];
+    if(fly==='ath') notes.push('Starting from Athens, this route runs south and west. If you\u2019re flying home from Athens too, save a day for the drive back, or look at flying home from Kalamata.');
+    if(fly==='klx') notes.push('Starting from Kalamata, this route runs east towards Athens. If you\u2019re flying home from Kalamata too, save a day for the drive back.');
+    if(fly==='any') notes.push('This route reads from Athens to the south-west. It works just as well the other way round from Kalamata.');
+    if(noRoads&&(picked.indexOf(3)>=0||picked.indexOf(4)>=0)) notes.push('The Mani roads are winding, so take them slowly and allow extra time.');
+    if(picked.indexOf(5)>=0||picked.indexOf(6)>=0) notes.push('Check ferry times before you go, especially outside the summer season.');
+    html+='<p style="margin:14px 0 0;font-size:15px;line-height:1.6;color:#2E3E57">'+notes.join(' ')+'</p>';
+    html+='<p style="margin:16px 0 0;display:flex;flex-wrap:wrap;gap:10px"><a href="where-we-stay.html" style="background:#13325B;color:#FFFFFF;text-decoration:none;font-weight:700;font-size:15px;padding:11px 18px;border-radius:4px">Where we stay</a>'+
+      '<a href="tips-trip-planner.html#countdown" style="background:#F4C542;color:#13325B;text-decoration:none;font-weight:700;font-size:15px;padding:11px 18px;border-radius:4px">Start my trip countdown</a></p>';
+    out.innerHTML=html; out.hidden=false;
+    out.scrollIntoView({behavior:'smooth',block:'start'});
+    if(window.gtag) gtag('event','base_finder_route',{nights:nights,fly:fly});
+  });
+})();
+</script>
 </body>
 </html>

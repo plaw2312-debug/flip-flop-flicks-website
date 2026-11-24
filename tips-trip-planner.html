@@ -59,6 +59,16 @@ img{max-width:100%}
 @media (max-width:640px){.gk{font-size:14px}.gk th,.gk td{padding:7px 8px}}
 .pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px 28px}
 .pk h3{margin:12px 0 10px !important}
+.tl a.now b{background:#F4C542;color:#13325B;transform:scale(1.15)}
+.tl a.past b{background:#9AA7B8}
+.tl a.now small::after{content:"you are here";display:block;font-family:'Caveat',cursive;font-weight:700;font-size:18px;color:#B2472F}
+.cd{margin:8px 0 32px;background:#13325B;color:#FFFFFF;border-radius:8px;padding:24px 26px}
+.cd label{font-weight:700;font-size:16px}
+.cd input[type=date]{font:inherit;font-size:16px;padding:9px 12px;border:0;border-radius:4px;margin:0 10px 0 0;color:#13325B}
+.cd button{font:inherit;font-size:15px;font-weight:700;border:0;border-radius:4px;padding:11px 18px;cursor:pointer}
+.cd .big{font-family:'Permanent Marker',cursive;font-size:44px;line-height:1.05;color:#F4C542;margin:14px 0 4px}
+.cd ol{margin:12px 0 0;padding-left:22px;font-size:16px;line-height:1.7}
+.cd ol a{color:#F4C542}
 @media print{header,footer,.noprint{display:none !important}.paper-banner{display:none}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -124,6 +134,24 @@ a{color:#13325B}a:hover{color:#B2472F}
     <p style="margin: 0 0 20px; font-size: 21px; line-height: 1.6; font-weight: 700">Most holiday stress isn't about <em>what</em> to do. It's about doing it too late.</p>
     <p style="margin: 0 0 20px">The passport that expires next month. The ferry that sold out. The bank card that gets blocked on your first night in a seaside taverna. This planner fixes that by working <em>backwards</em> from take-off, so every job lands at the right moment and nothing piles up in the final week.</p>
     <p style="margin: 0 0 20px">Pick the stage you're at, do what's on the list, and come back when the next one comes round. Bookmark it, print it, or share it with whoever's coming along.</p>
+    <div id="countdown" class="cd noprint">
+      <p style="margin: 0 0 6px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: #F4C542">your personal countdown</p>
+      <p style="margin: 0 0 14px; font-size: 16px; line-height: 1.6">Pop in the day you fly and we'll work out the date of every stage below, show you where you are now, and give you reminders for your calendar.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+        <label for="cd-date">I fly on</label>
+        <input type="date" id="cd-date">
+      </div>
+      <div id="cd-out" hidden>
+        <p class="big" id="cd-days"></p>
+        <p style="margin: 0 0 4px; font-size: 17px" id="cd-stage"></p>
+        <ol id="cd-list"></ol>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px">
+          <button type="button" id="cd-ics" style="background: #F4C542; color: #13325B">Add all 6 reminders to my calendar ↓</button>
+          <button type="button" id="cd-reset" style="background: transparent; color: #FFFFFF; text-decoration: underline; padding-left: 4px">Clear my date</button>
+        </div>
+        <p style="margin: 12px 0 0; font-size: 14px; color: #C9D3E0">The calendar file works with Apple, Google and Outlook calendars. Each reminder pops up at 9am on the day and links back to that stage of this page. Or add them one at a time to Google Calendar with the links above.</p>
+      </div>
+    </div>
     <div style="margin: 8px 0 28px; background: #FFFFFF; border-radius: 6px; padding: 22px 26px; box-shadow: 0 6px 18px rgba(19,50,91,0.12)">
       <p style="margin: 0 0 10px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px; color: #B2472F">start here: five things to do today</p>
       <ul class="chk" style="margin: 0">
@@ -156,7 +184,7 @@ a{color:#13325B}a:hover{color:#B2472F}
     </ul>
     <p style="margin: 0 0 10px; font-weight: 700">Then tick these off:</p>
     <ul class="chk">
-      <li><label><input type="checkbox"><span>Choose your destination(s) and check the <a href="tips-when-to-go.html">best time of year to go</a>.</span></label></li>
+      <li><label><input type="checkbox"><span>Choose your destination(s) (our <a href="tips-where-to-base.html#base-finder">base finder</a> suggests a route in a minute) and check the <a href="tips-when-to-go.html">best time of year to go</a>.</span></label></li>
       <li><label><input type="checkbox"><span>Fix your dates. Shifting by a few days can make a real difference to prices.</span></label></li>
       <li><label><input type="checkbox"><span>Check every passport was issued less than 10 years ago and is valid for at least 3 months after the day you leave Greece (the rule for UK passports).</span></label></li>
       <li><label><input type="checkbox"><span>Check visa and entry requirements for each traveller's nationality. UK travellers: check GOV.UK's Greece travel advice for the latest, including the new EES fingerprint and photo checks at the border.</span></label></li>
@@ -418,6 +446,86 @@ a{color:#13325B}a:hover{color:#B2472F}
       boxes.forEach(function(cb){ cb.checked=false; });
     });
   }
+})();
+</script>
+<script>
+/* Personal countdown. The departure date is kept in the reader's own browser only (localStorage). Nothing is sent anywhere. */
+(function(){
+  var KEY='jsa-trip-planner-date', store=null;
+  try{ store=window.localStorage; var t='__jsa'; store.setItem(t,t); store.removeItem(t); }catch(e){ store=null; }
+  var PAGE='https://juststayaway.com/tips-trip-planner.html';
+  var STAGES=[
+    {d:90,id:'s1',name:'3 months out: dream it',job:'choose where, fix your dates, check passports and entry rules'},
+    {d:56,id:'s2',name:'8 weeks out: book the big stuff',job:'book flights, places to stay, car hire and ferries'},
+    {d:28,id:'s3',name:'4 weeks out: sort the admin',job:'sort insurance, money, phone and paperwork'},
+    {d:7,id:'s4',name:'1 week out: pack like a local',job:'pack, download maps and copy your documents'},
+    {d:2,id:'s5',name:'48 hours out: the final sweep',job:'check in online, confirm transfers and charge everything'},
+    {d:0,id:'s6',name:'Departure day: out the door',job:'grab passports, phone, tickets and keys'}
+  ];
+  var input=document.getElementById('cd-date'), out=document.getElementById('cd-out');
+  if(!input||!out) return;
+  var links=document.querySelectorAll('.tl a');
+  function today(){ var n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); }
+  function parse(v){ var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v||''); return m?new Date(+m[1],m[2]-1,+m[3]):null; }
+  function minus(dt,days){ return new Date(dt.getFullYear(),dt.getMonth(),dt.getDate()-days); }
+  function ymd(dt){ return dt.getFullYear()+String(dt.getMonth()+1).padStart(2,'0')+String(dt.getDate()).padStart(2,'0'); }
+  function nice(dt){ return dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'}); }
+  function gcal(s,dt){
+    var end=new Date(dt.getFullYear(),dt.getMonth(),dt.getDate()+1);
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Greece trip: '+s.name)+
+      '&dates='+ymd(dt)+'/'+ymd(end)+'&details='+encodeURIComponent('Time to '+s.job+'. Your checklist: '+PAGE+'#'+s.id);
+  }
+  function show(v){
+    var dep=parse(v);
+    links.forEach(function(a){ a.classList.remove('now','past'); });
+    if(!dep){ out.hidden=true; return; }
+    var t=today(), days=Math.round((dep-t)/864e5), cur=-1;
+    STAGES.forEach(function(s,i){ if(minus(dep,s.d)<=t) cur=i; });
+    document.getElementById('cd-days').textContent=
+      days>1? days+' days to go' : days===1? 'Tomorrow!' : days===0? 'Today\u2019s the day!' : 'Hope you had a wonderful trip';
+    var st=document.getElementById('cd-stage');
+    if(days<0){ st.innerHTML='Planning the next one? Pick a new date above.'; }
+    else if(cur<0){ st.innerHTML='Plenty of time. Your first stage starts on <strong>'+nice(minus(dep,90))+'</strong>, but there\u2019s no harm in <a href="#s1" style="color:#F4C542">dreaming early</a>.'; }
+    else { st.innerHTML='You\u2019re at <a href="#'+STAGES[cur].id+'" style="color:#F4C542;font-weight:700">'+STAGES[cur].name+'</a>. Time to '+STAGES[cur].job+'.'; }
+    var ol=document.getElementById('cd-list'); ol.innerHTML='';
+    STAGES.forEach(function(s,i){
+      var dt=minus(dep,s.d), li=document.createElement('li');
+      li.innerHTML='<strong>'+nice(dt)+'</strong>: <a href="#'+s.id+'">'+s.name+'</a> \u00b7 <a href="'+gcal(s,dt)+'" target="_blank" rel="noopener" style="font-size:14px">Google Calendar</a>';
+      if(i<cur) li.style.opacity='.6';
+      ol.appendChild(li);
+      if(links[i]){ if(i===cur) links[i].classList.add('now'); else if(i<cur) links[i].classList.add('past'); }
+    });
+    out.hidden=false;
+  }
+  function ics(){
+    var dep=parse(input.value); if(!dep) return;
+    var stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
+    var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Just Stay Away//Trip planner//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
+    STAGES.forEach(function(s){
+      var dt=minus(dep,s.d), end=new Date(dt.getFullYear(),dt.getMonth(),dt.getDate()+1);
+      L.push('BEGIN:VEVENT','UID:'+ymd(dep)+'-'+s.id+'@juststayaway.com','DTSTAMP:'+stamp,
+        'DTSTART;VALUE=DATE:'+ymd(dt),'DTEND;VALUE=DATE:'+ymd(end),
+        'SUMMARY:Greece trip: '+s.name,
+        'DESCRIPTION:Time to '+s.job.replace(/,/g,'\\,')+'. Your checklist: '+PAGE+'#'+s.id,
+        'URL:'+PAGE+'#'+s.id,
+        'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Greece trip: '+s.name,'TRIGGER:PT9H','END:VALARM','END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    var blob=new Blob([L.join('\r\n')+'\r\n'],{type:'text/calendar'}), a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='greece-trip-countdown.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },1000);
+    if(window.gtag) gtag('event','countdown_calendar_download');
+  }
+  if(store){ var saved=store.getItem(KEY); if(saved){ input.value=saved; show(saved); } }
+  input.addEventListener('change',function(){
+    show(input.value);
+    if(store){ try{ if(parse(input.value)) store.setItem(KEY,input.value); else store.removeItem(KEY); }catch(e){} }
+  });
+  document.getElementById('cd-ics').addEventListener('click',ics);
+  document.getElementById('cd-reset').addEventListener('click',function(){
+    input.value=''; show(''); if(store){ try{ store.removeItem(KEY); }catch(e){} }
+  });
 })();
 </script>
 </body>
