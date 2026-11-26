@@ -34,6 +34,9 @@ videos.html and travel.html; do not remove it.
 - The site is public and open to Google. Do not add `noindex` tags, and leave
   `vercel.json` and `robots.txt` alone.
 - When adding or removing a page, add or remove its line in `sitemap.xml`.
+- Every page has `<link rel="canonical" href="https://juststayaway.com/<file>.html">`
+  just after `<title>` (the home page uses `https://juststayaway.com/`). Update it
+  when copying a page, so Google doesn't treat pages as duplicates.
 - The header, footer and blue jagged banner are the same on every page. Change
   one, change them all.
 - Square-bracket text such as `[Dish and place]` is a placeholder waiting for
